@@ -1,0 +1,303 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink24"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A120.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 20.636885768985322%; top: 4.5583472920156337%; width: 67.87428206764518%; height: 7.6035734226689%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_3" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.019783024888322%; top: 10.248464544946957%; width: 81.9164007657945%; height: 9.953657174762702%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.4671346522016595%; top: 19.643774427694026%; width: 85.70325462667518%; height: 7.091010608598548%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.296107211231654%; top: 25.618090452261306%; width: 86.85386088066369%; height: 7.202680067001675%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.871729419272495%; top: 31.704075935231714%; width: 95.27760051052968%; height: 8.654383026242323%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.381620931716656%; top: 38.018425460636514%; width: 92.9164007657945%; height: 7.26856504745952%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 7.019783024888322%; top: 44.04857621440536%; width: 87.30057434588386%; height: 7.816862088218872%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.509253350350989%; top: 50.58123953098828%; width: 91.44862795149967%; height: 7.4818537130094915%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 5.93490746649649%; top: 57.11390284757119%; width: 92.78876834716017%; height: 7.035175879396985%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 5.232929164007658%; top: 62.97654941373534%; width: 94.63943841735801%; height: 7.994416527079844%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 5.955966815571155%; top: 68.56504745951982%; width: 90.55520102105935%; height: 7.491903964265774%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_14" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.190172303765157%; top: 75.54438860971524%; width: 86.73962986598596%; height: 7.151870463428253%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.4467134652201659%; top: 82.3461753210497%; width: 97.38353541799617%; height: 6.994416527079844%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_16" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/17.html" title="" style="position: absolute; left: 6.1269942565411615%; top: 88.4321608040201%; width: 90.04467134652202%; height: 6.674483528754886%; z-index: 2;"></a>
+					
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		
+	
+		<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="104, 10, 1528, 182" data-placeholder="Enter text for line 2" class="">Registrum debitorum
+						
+		</li>
+	
+		<li id="line_3" contenteditable="false" spellcheck="true" data-bbox="110, 94, 1566, 326" data-placeholder="Enter text for line 3" class="">Anno nostre salutis, millesimo
+			
+		</li>
+	
+		<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="70, 316, 1554, 443" data-placeholder="Enter text for line 4" class="">quingentesimo, dominica vero in
+			
+		</li>
+	
+		<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="130, 423, 1491, 552" data-placeholder="Enter text for line 5" class="">qua predicatur Sanctum Euangelium
+			
+		</li>
+	
+		<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="45, 532, 1538, 687" data-placeholder="Enter text for line 6" class=""><i><span lang="RO" style="font-size:12.0pt;line-height:
+150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;
+mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA">Ego sum pastor bonus</span></i><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">, ego Thomas,</span>
+			
+		</li>
+	
+		<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="100, 663, 1556, 829" data-placeholder="Enter text for line 7" class="">pastor ouium Christi in Zolna, atque
+			
+		</li>
+	
+		<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="110, 771, 1478, 911" data-placeholder="Enter text for line 8" class="">plebanus, natus ex Bistria, filius
+			
+		</li>
+	
+		<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="102, 888, 1535, 1022" data-placeholder="Enter text for line 9" class="">Martini funificis, studens Craco-
+			
+		</li>
+	
+		<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="93, 1005, 1547, 1131" data-placeholder="Enter text for line 10" class="">viensis, scolarisque Wienensis universi-
+			
+		</li>
+	
+		<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="82, 1110, 1565, 1289" data-placeholder="Enter text for line 11" class="">tatum, ab anno mee incarnacionis
+			
+		</li>
+	
+		<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="109, 1228, 1528, 1398" data-placeholder="Enter text for line 12" class="">sexagesimo octauo, promocionis
+			
+		</li>
+	
+		
+	
+		<li id="line_14" contenteditable="false" spellcheck="true" data-bbox="97, 1353, 469, 1499" data-placeholder="Enter text for line 14" class="">eiusdem plebanie in prescripta Zolna
+			
+		</li>
+	
+		<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="7, 1439, 1533, 1618" data-placeholder="Enter text for line 15" class="">hic presens ac sequens, calamo meo
+			
+		</li>
+	
+		<li id="line_16" contenteditable="false" spellcheck="true" data-bbox="49, 1548, 1460, 1775" data-placeholder="Enter text for line 16" class="">proprio depinxi registrum, videlicet anno 16.
+			
+		</li>
+							
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

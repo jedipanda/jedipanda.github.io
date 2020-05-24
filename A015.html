@@ -1,0 +1,300 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink3"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A015.jpg" draggable="false"/>
+			
+			
+			<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 1.878121878121878%; top: 14.6045608927705%; width: 94.7952047952048%; height: 8.412906356137798%; z-index: 2;"></a>
+					
+						
+					
+			<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 2.977022977022977%; top: 22.22222222222222%; width: 94.14585414585414%; height: 8.53954391072295%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.3966033966033966%; top: 28.675400291120816%; width: 96.56343656343657%; height: 8.121785540999515%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.236763236763237%; top: 34.837457544881126%; width: 95.96403596403596%; height: 8.237748665696264%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.076923076923077%; top: 42.16399805919457%; width: 95.46453546453546%; height: 8.286268801552644%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.716283716283716%; top: 48.03493449781659%; width: 94.32567432567433%; height: 7.315866084425036%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.816183816183816%; top: 55.604075691411936%; width: 94.76523476523477%; height: 7.879184861717613%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 3.856143856143856%; top: 61.28093158660844%; width: 96.1038961038961%; height: 7.159631246967491%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 4.415584415584416%; top: 68.3163512857836%; width: 94.72527472527473%; height: 7.024745269286754%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 4.815184815184815%; top: 73.31392527899078%; width: 94.68531468531468%; height: 8.353711790393014%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 4.975024975024975%; top: 79.81562348374575%; width: 94.84515484515485%; height: 8.22707423580786%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/30.html" title="" style="position: absolute; left: 5.254745254745255%; top: 88.69480834546337%; width: 32.86713286713287%; height: 10.86851043182921%; z-index: 2;"></a>
+		
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+	
+		<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="94, 301, 3337, 495" data-placeholder="Enter text for line 2" class="">Cum actus humani qui fiunt in tempore ex inconstancia temporis decidant,
+			expedit necessario, ut litterarum muni-
+									
+								</li>
+							
+								
+							
+								<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="149, 458, 4861, 634" data-placeholder="Enter text for line 4" class="">cionibus cum testium et almasiatorum idoneorum insercione firmiter perhennentur.
+			Hinc est quod nos, Iacobus Hentman-
+									
+								</li>
+							
+								<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="170, 591, 5003, 779" data-placeholder="Enter text for line 5" class="">nisse, magister ciuium de Cybino, iudex prouincialis Seruacius, Georgius
+			coqus, Symon aurifaber, totaque comunitas iurato-
+									
+								</li>
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="162, 718, 4965, 929" data-placeholder="Enter text for line 6" class="">rum et ciuium spectancium ad eosdem, ad vniuersorum honorabilium noticiam
+			quorum idoneitati expedit presentibus apertissime cupimus
+									
+								</li>
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="154, 869, 4932, 1081" data-placeholder="Enter text for line 7" class="">peruenire, discretos homines nostros conciues comunitatem cerdonum molam
+			corticum ad eorum opus spectantem erga comi-
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="186, 990, 4907, 1182" data-placeholder="Enter text for line 8" class="">tem Petrum de uilla Hetzlini et Michaelem filium comitis Martini pro
+			LXXXta et quinque florenis rationabiliter et libere con-
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="191, 1146, 4934, 1329" data-placeholder="Enter text for line 9" class="">tradiccione nullius obstante comparasse, testibus et almasiatoribus
+			honestis presentibus, videlicet Georgio coquo, magistro Nyco-
+									
+								</li>
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="193, 1263, 5003, 1493" data-placeholder="Enter text for line 10" class="">lao, Iohanne bursatore, satisfaccione eciam super predicta vendicione
+			facta, debita et decenti. Quare predictis hominibus memoratam
+									
+								</li>
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="221, 1408, 4962, 1594" data-placeholder="Enter text for line 11" class="">molam vendendi, commutandi, possidendi et in quoslibet usus convertendi
+			plenam damus facultatem, occasione et inuen-
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="241, 1511, 4980, 1745" data-placeholder="Enter text for line 12" class="">cione sinistra cuiusquam non obstante. In cuius testimonium firmum et
+			irreuocabilem fidelis eorum instancie respectu presentibus
+									
+								</li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="249, 1645, 4996, 1897" data-placeholder="Enter text for line 13" class="">nostri sigilli robor est appensus. Datum in festo beati Mathie apostoli,
+			anno Domini M<sup>mo</sup>&nbsp;CCC<sup>mo</sup>&nbsp;LX<sup>mo</sup>&nbsp;sep-
+									
+								</li>
+							
+								
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="263, 1828, 1908, 2052" data-placeholder="Enter text for line 15" class="">timo suo robore perpetue valituro.
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+<script src="js/main.js"></script>
+</body>
+</html>

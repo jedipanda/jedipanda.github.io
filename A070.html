@@ -1,0 +1,493 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink14"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A070.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.427509293680297%; top: 22.99108469539376%; width: 83.50371747211896%; height: 7.698365527488855%; z-index: 2;"></a>
+					
+						
+					
+			<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.288104089219331%; top: 29.974739970282318%; width: 83.68959107806691%; height: 7.104011887072808%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 14.312267657992566%; top: 36.809806835066865%; width: 85.36245353159852%; height: 7.36106983655275%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 14.49814126394052%; top: 42.75334323922734%; width: 84.01486988847584%; height: 7.658246656760772%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 14.776951672862454%; top: 48.439821693907874%; width: 83.7360594795539%; height: 7.915304606240714%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.102230483271375%; top: 54.977711738484395%; width: 84.38661710037175%; height: 7.172362555720653%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.148698884758364%; top: 59.475482912332836%; width: 83.08550185873607%; height: 7.766716196136702%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.148698884758364%; top: 66.56760772659733%; width: 82.76022304832713%; height: 7.726597325408618%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.055762081784387%; top: 73.25408618127786%; width: 84.01486988847584%; height: 8.320950965824666%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_14" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 14.91635687732342%; top: 79.23774145616642%; width: 83.87546468401487%; height: 6.240713224368499%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/09.html" title="" style="position: absolute; left: 15.148698884758364%; top: 84.43833580980683%; width: 83.03903345724908%; height: 7.578008915304606%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+		
+		<li id="line_4" contenteditable="false" spellcheck="false" data-bbox="332, 148, 2129, 220" data-placeholder="Enter text for line 4" class="">Nos iudex iuratique consules ci<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">itatis Brassouiensis</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> memoriae commendantes
+			tenore praesentium quibus expedit universis significamus, quod pro</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">idi et circumspecti viri
+			Cristanus Rod</span>
+									
+								</li>
+							
+								
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="329, 195, 2130, 263" data-placeholder="Enter text for line 6" class="">et S<span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">y</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">mon Clump nostre ci</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">itatis iamfate iurati
+			consules ex certa nostra scien</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ia suarum et suorum progenitorum animarum co</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">n</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">puncti et succensi zelo,
+			quandam curiam seu domum cum</span>
+									
+								</li>
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="308, 241, 2145, 304" data-placeholder="Enter text for line 7" class="">piscina olim per Cristannum Clump in pede montis<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> vulgariter Burchhals
+			extructam et erectam cum </span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">v</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ni</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ersis suis pertinen</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">iis, domibus et
+			officinis, orto, piscina, pomerio, horreo et</span>
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="312, 281, 2120, 346" data-placeholder="Enter text for line 8" class="">stabulis, fructibus et emolimentis et cum libera
+			introductione et eductione aquarum, fratribus sancti Dominici in claustro
+			beatorum Petri et Pauli apostolorum<span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA"> ordinis predicatorum</span>
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="318, 326, 2120, 386" data-placeholder="Enter text for line 9" class="">sub regulari obser<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">an</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ia </span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">D</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">eo famulantibus pro
+			quadam missa prima in ordine in ara sancti Nicolai perpetue in eodem claustro
+			ob refrigerium suarum suorumque progenitorum animarum</span>
+									
+								</li>
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="325, 370, 2141, 425" data-placeholder="Enter text for line 10" class="">salute celebranda approp<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">r</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ia</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">erunt, dederunt et
+			ascripserunt. Supplicarunt itaque nobis tam ipsi fratres quam dicti Cristannus
+			et S</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:
+			&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">y</span><span lang="LA" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">mon, ut ipsam curiam seu domum cum eiusdem incola</span>
+									
+								</li>
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="326, 407, 2114, 466" data-placeholder="Enter text for line 11" class="">ab omnibus steuris, taxis, censibus, excubiis et
+			laboribus ci<span lang="RO" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">itatis pretaxate exempt</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">a</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">m et supportatam habere dignaremur. Nos </span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ero di</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">inum po</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ius volentes ampliare</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> cultum quam</span>
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="326, 448, 2107, 500" data-placeholder="Enter text for line 12" class="">diminuere et bonis per ipsos fratres factis et
+			fiendis participes fieri cupientes, prememoratam curiam, domum atque eius
+			incolam pro tempore inhabitantem deinceps cum <span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">v</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ni</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ersis</span>
+									
+								</li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="324, 493, 2132, 549" data-placeholder="Enter text for line 13" class="">suis pertinen<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">iis ab omni solu</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ione censuum, steurarum
+			ceterorumque</span><span lang="RO" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA"> ut premittitur ac libera introductione et eductione aquarum vigore
+			harum li</span><span lang="RO" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">t</span><span lang="LA" style="font-size:12.0pt;line-height:150%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+			minor-latin;mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">terarum nostrarum duximus fa</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">orose</span>
+									
+								</li>
+							
+								<li id="line_14" contenteditable="false" spellcheck="true" data-bbox="321, 540, 2126, 582" data-placeholder="Enter text for line 14" class="">perpetue eximendam, supporta<span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">t</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">am et liberam. In quorum
+			omnium premissorum fidem, cautelam et e</span><span lang="RO" style="font-size:
+			12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">iden</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">iam maiorem</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> presentes nostras lit</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">t</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">eras ipsis fratribus
+			sigillo pendenti nostre ci</span><span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">itatis robora</span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">-</span>
+									
+								</li>
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="326, 575, 2113, 626" data-placeholder="Enter text for line 15" class="">tas duximus in testimonium concedendas. Datum
+			Brassouie in die apostolorum S<span lang="RO" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">y</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">monis et </span><span lang="RO" style="font-size:
+			12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">I</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ude, sub anno </span><span lang="RO" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">D</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">omini millesimo
+			quadringentesimo sexagesimo quarto.</span>
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

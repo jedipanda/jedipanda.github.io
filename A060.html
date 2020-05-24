@@ -1,0 +1,290 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+.element_to_magnify img {
+    width: 100%;
+    height: auto;
+    margin-left: 50px;
+}
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink12"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A060.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.4023732470334411%; top: 13.698162729658792%; width: 96.00862998921251%; height: 16.89763779527559%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.0248112189859762%; top: 30.233595800524935%; width: 96.81769147788565%; height: 12.910761154855644%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_3" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.43149946062567424%; top: 40.25721784776903%; width: 96.65587918015102%; height: 13.435695538057743%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.0248112189859762%; top: 50.75590551181102%; width: 97.6267529665588%; height: 13.698162729658792%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.3472491909385113%; top: 62.56692913385827%; width: 97.73462783171522%; height: 13.173228346456693%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07c.html" title="" style="position: absolute; left: 3.325997842502697%; top: 73.59055118110236%; width: 85.76051779935275%; height: 15.58530183727034%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+		
+		<li id="line_1" contenteditable="false" spellcheck="false" data-bbox="26, 56, 1806, 128" data-placeholder="Enter text for line 1" class="">Continuam fidelitatem promptissimis cum
+			obsequiis nunc et vita nobis comite sedule predirectam illustrissime
+									
+								</li>
+							
+								<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="19, 119, 1814, 172" data-placeholder="Enter text for line 2" class="">in<span lang="RO" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ictissimeque
+			princeps et domine noster gratiosissime. Quia providum virum Georgium Koch,
+			conci</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:
+			&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+			minor-fareast;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">em nostri<sup> </sup>medii, ilatorem</span>
+									
+								</li>
+							
+								<li id="line_3" contenteditable="false" spellcheck="true" data-bbox="8, 161, 1800, 216" data-placeholder="Enter text for line 3" class="">videlicet presen<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ium,
+			de nostra inte</span><span lang="RO" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ncio</span><span lang="LA" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ne et voluntate sane
+			informatum propter certa nego</span><span lang="RO" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ia nostram
+			communitatem tangen</span><span lang="RO" style="font-size:12.0pt;line-height:
+			107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ia ad</span>
+									
+								</li>
+							
+								<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="19, 201, 1829, 257" data-placeholder="Enter text for line 4" class="">serenissimam vestram maiestatem duximus
+			transmittendum. Petimus igitur humiliter et attente eandem vestram maiestatem,
+			ut verbis
+									
+								</li>
+							
+								<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="12, 246, 1824, 300" data-placeholder="Enter text for line 5">ipsius nomine nostri maiestati vestre referendis
+			plenam credulitatis fidem hoc vice velitis et dignemini adhibere. Datis
+									
+								</li>
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="32, 288, 1622, 355" data-placeholder="Enter text for line 6" class="">feria secunda proxima post festum Assumptionis
+			Marie, anno Domini Mo CCCCo quinquagesimo sexto.
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

@@ -1,0 +1,312 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+.element_to_magnify img {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink23"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A115.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 1.380952380952381%; top: 5.5452562704471101%; width: 97.25396825396825%; height: 10.667393675027263%; z-index: 2;"></a>
+					
+						
+					
+			<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 9.079365079365079%; top: 16.613958560523447%; width: 90.6984126984127%; height: 4.942202835332607%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 9.46031746031746%; top: 21.12104689203926%; width: 86.7936507936508%; height: 6.01526717557252%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 10.53968253968254%; top: 25.519083969465647%; width: 88.28571428571429%; height: 5.724100327153762%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 10.666666666666666%; top: 29.772082878953107%; width: 87.46031746031746%; height: 6.287895310796074%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 8.920634920634921%; top: 34.1886586695747%; width: 89.68253968253968%; height: 6.233369683751363%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 10.0%; top: 39.69574700109051%; width: 88.98412698412699%; height: 5.742639040348964%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 8.7777777777777777%; top: 44.87568157033806%; width: 89.0952380952381%; height: 5.797164667393675%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 4.825396825396825%; top: 49.5103598691385%; width: 93.68253968253968%; height: 6.52453653217012%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 7.936507936507937%; top: 56.544165757906214%; width: 15.714285714285714%; height: 4.125408942202835%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_24" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 66.22222222222223%; top: 74.64558342420938%; width: 33.714285714285715%; height: 8.178844056706652%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_25" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 67.33333333333333%; top: 82.11559432933478%; width: 27.80952380952381%; height: 6.870229007633588%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_26" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/19.html" title="" style="position: absolute; left: 74.53968253968254%; top: 88.98582333696838%; width: 6.206349206349206%; height: 10.632497273718649%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		
+		<li id="line_1" contenteditable="false" spellcheck="true" data-bbox="138, 10, 3107, 279" data-placeholder="Enter text for line 1" class="">Nos, Ladislaus Gereb, episcopus Transsiluanus,
+			memorie commendamus tenore presencium significantes,
+									
+								</li>
+							
+								
+							
+								<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="286, 213, 3143, 377" data-placeholder="Enter text for line 5" class="">quibus expedit vniuersis, quod nos pro futura
+			firmitate ac securitate rerum et negociorum gerendorum,
+									
+								</li>
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="298, 314, 3032, 461" data-placeholder="Enter text for line 6" class="">que in decanatu Meggiensi plurima emergunt,
+			sigillum nouum oblongum, in quo coronacio
+									
+								</li>
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="332, 413, 3113, 573" data-placeholder="Enter text for line 7" class="">beatissime Marie Virginis cum vna manu aperta subter
+			pedes eiusdem est, in argento excisa
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="336, 491, 3091, 643" data-placeholder="Enter text for line 8" class="">litteris in circuitu .S. decanatus Meggiensis
+			1.4.9.9. adiacentibus, licet id ad predeccessoribus
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="281, 572, 3106, 723" data-placeholder="Enter text for line 9" class="">nostris episcopis solitum fuisse non inueniamus,
+			confirmandum duximus et approbandum confirmamusque
+									
+								</li>
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="0, 673, 3118, 815" data-placeholder="Enter text for line 10" class="">et in dyocesi nostra autenticum approbamus
+			eatenus, quatenus eo iure et legitime vsi fuerint,
+									
+								</li>
+							
+								
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="119, 768, 3083, 911" data-placeholder="Enter text for line 12" class="">harum nostrarum vigore et testimonio litterarum
+			mediante. Datum Albe, in palacio nostro pontificali,
+									
+								</li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="152, 853, 3103, 991" data-placeholder="Enter text for line 13" class=""><span lang="RO" style="font-size:12.0pt;line-height:
+			150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;
+			mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">vigesima prima die mensis Iulii, anno Domini
+			millesimo quadringentesimo nonagesimo</span></li>
+							
+								
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="250, 982, 745, 1076" data-placeholder="Enter text for line 15" class="">nono.</li>
+							
+								
+							
+								<li id="line_24" contenteditable="false" spellcheck="true" data-bbox="2086, 1369, 3148, 1519" data-placeholder="Enter text for line 24" class="">IOANNES DE MEGERECHE
+									
+								</li>
+							
+								<li id="line_25" contenteditable="false" spellcheck="true" data-bbox="2121, 1506, 2997, 1632" data-placeholder="Enter text for line 25" class="">SECRETARI
+									
+								</li>
+							
+								<li id="line_26" contenteditable="false" spellcheck="true" data-bbox="2033, 1632, 2638, 1827" data-placeholder="Enter text for line 26" class="">VS</li>
+							
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

@@ -1,0 +1,255 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink9"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A045.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 7.432762836185819%; top: 0.0%; width: 47.286063569682153%; height: 18.97130242825607%; z-index: 2;"></a>
+					
+						
+					
+			<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 2.1026894865525674%; top: 18.432671081677704%; width: 92.9119804400978%; height: 12.141280353200884%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 6.08557457212714%; top: 30.242825607064017%; width: 92.863080684596575%; height: 16.445916114790286%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 9.04645476772616%; top: 44.260485651214125%; width: 88.81173594132029%; height: 15.894039735099337%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 7.726161369193154%; top: 59.602649006622514%; width: 84.572127139364303%; height: 14.147902869757175%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_17" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/20a.html" title="" style="position: absolute; left: 7.628361858190709%; top: 71.75055187637969%; width: 30.81907090464548%; height: 14.596026490066226%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		<li id="line_1" contenteditable="false" spellcheck="true" data-bbox="152, 0, 710, 190" data-placeholder="Enter text for line 1" class="">Amen</li>
+				
+					
+				
+		<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="43, 167, 532, 277" data-placeholder="Enter text for line 4" class="">Anno domini Mo CCCC xxxii, quando
+			
+		</li>
+	
+		
+	
+		<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="104, 274, 1001, 423" data-placeholder="Enter text for line 7" class="">deuastata fuit Burcia a Turcis,
+			
+		</li>
+	
+		<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="185, 401, 856, 545" data-placeholder="Enter text for line 8" class="">circa festum Iohannis baptiste. Et interfectus
+			
+		</li>
+	
+		
+	
+		<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="158, 540, 456, 641" data-placeholder="Enter text for line 10" class="">fuit prefectus de Sophia cum
+			
+		</li>
+	
+	
+	
+		<li id="line_17" contenteditable="false" spellcheck="true" data-bbox="156, 641, 684, 737" data-placeholder="Enter text for line 17">ceteris.</li>
+	
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

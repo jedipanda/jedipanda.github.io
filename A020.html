@@ -1,0 +1,701 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=false], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+
+			//
+			
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+ opacity: 0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=false]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:70%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+/* .element_to_magnify img {
+    width: %;
+    height: auto;
+	margin-left: 140px;
+}
+ */
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink4"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A020.jpg" draggable="false"/>
+			
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.303972366148532%; top: 2.1317999269806498%; width: 82.81519861830742%; height: 3.9795545819642206%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0%; top: 5.709748083242059%; width: 79.27461139896373%; height: 3.176341730558598%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_3" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.9044905008635578%; top: 8.827309236947791%; width: 50.60621761658031%; height: 2.723986856516977%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0%; top: 11.00365096750639%; width: 54.97409326424871%; height: 1.8112449799196786%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.7132987910189983%; top: 12.646586345381525%; width: 45.509499136442145%; height: 2.5049288061336252%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0%; top: 15.311792625045637%; width: 39.72366148531952%; height: 2.21285140562249%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0%; top: 17.2833150784958%; width: 40.58721934369603%; height: 2.5414384811975173%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.8860103626943006%; top: 20.27710843373494%; width: 35.233160621761655%; height: 2.5191675794085433%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.5906735751295336%; top: 22.650237312887914%; width: 39.03281519861831%; height: 2.5556772544724353%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.1951640759930915%; top: 24.49156626506024%; width: 53.19516407599309%; height: 2.523986856516977%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.068048359240069%; top: 26.812340270171596%; width: 39.72366148531952%; height: 2.501715954728003%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_14" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0860103626943006%; top: 28.528294998174516%; width: 65.97582037996546%; height: 2.785870755750274%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0860103626943006%; top: 30.901423877327492%; width: 50.259067357512954%; height: 2.7572836801752462%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_16" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.040587219343696%; top: 32.6031398320555%; width: 34.542314335060446%; height: 2.7747353048557866%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_17" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0088082901554404%; top: 35.049288061336256%; width: 38.255613126079446%; height: 2.628696604600219%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_18" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.9043177892918824%; top: 37.568455640744794%; width: 47.06390328151986%; height: 2.5921869295363273%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_20" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.1407599309153713%; top: 39.97809419496166%; width: 70.552677029360968%; height: 2.0080321285140563%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_22" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.2861830742659758%; top: 41.949616648411826%; width: 70.72020725388601%; height: 2.2635998539612996%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_23" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.1407599309153713%; top: 43.921139101861996%; width: 82.03454231433506%; height: 2.628696604600219%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_24" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.190846286701209%; top: 46.673603504928806%; width: 82.40932642487047%; height: 2.549361080686382%; z-index: 2;"></a>
+					
+						
+					
+						
+					
+						<a class="rect" alt="line_27" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.2271157167530224%; top: 48.4118291347207%; width: 58.46286701208981%; height: 3.3588901058780576%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_28" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.158894645941278%; top: 51.07703541438481%; width: 60.397236614853195%; height: 2.154070828769624%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_29" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.9861830742659758%; top: 52.79299014238773%; width: 60.5146804835924%; height: 2.738225629791895%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_30" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8998272884283247%; top: 55.348667396860165%; width: 60.333333333333336%; height: 2.4461482292807593%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_32" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8998272884283247%; top: 57.4662285505659%; width: 60.316062176165804%; height: 2.4826579043446513%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_33" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.7772020725388601%; top: 59.401241328952175%; width: 54.0587219343696%; height: 2.4826579043446513%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_34" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.1088082901554404%; top: 61.153705732018985%; width: 70.6580310880829%; height: 2.8842643300474626%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_36" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.158894645941278%; top: 63.96495071193866%; width: 30.13816925734024%; height: 2.8112449799196786%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_37" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.158894645941278%; top: 66.22855056589997%; width: 62.69430051813472%; height: 2.8842643300474626%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_39" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8998272884283247%; top: 68.7842278203724%; width: 44.73229706390328%; height: 2.5921869295363273%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_40" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8998272884283247%; top: 70.93829864914203%; width: 53.281519861830745%; height: 2.8842643300474626%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_41" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.9861830742659758%; top: 73.56699525374223%; width: 49.913644214162346%; height: 2.665206279664111%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_43" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.958894645941278%; top: 75.90361445783132%; width: 44.428324697754746%; height: 2.8477546549835706%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_44" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.2089810017271156%; top: 77.94815626140927%; width: 21.329879101899827%; height: 3.723986856516977%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_45" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8635578583765112%; top: 80.68638189120117%; width: 54.317789291882555%; height: 3.4684191310697337%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_47" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0089810017271156%; top: 83.57064622124864%; width: 32.64248704663213%; height: 2.5191675794085433%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_48" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.03160621761658%; top: 85.37385907265426%; width: 64.24870466321244%; height: 2.9795545819642206%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_49" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.0132987910189983%; top: 87.95180722891567%; width: 31.260794473229705%; height: 2.628696604600219%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_50" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.936096718480138%; top: 90.39795545819642%; width: 66.49395509499136%; height: 2.628696604600219%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_51" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 3.035060449050086%; top: 92.80759401241329%; width: 70.573402417962%; height: 2.5921869295363273%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_54" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/14.html" title="" style="position: absolute; left: 2.8134715025906736%; top: 94.70609711573567%; width: 70.09153713298791%; height: 4.3446513326031395%; z-index: 2;"></a>
+		
+		
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+	
+		<li id="line_1" contenteditable="false" spellcheck="false" data-bbox="73, 31, 1032, 140" data-placeholder="Enter text for line 1" class="">No<i>ta </i>ad i<i>n</i>telligendas breviatu<i>r</i>as
+			decretaliu<i>m</i>:
+									
+								</li>
+							
+								<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="0, 129, 918, 216" data-placeholder="Enter text for line 2" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">aut </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">fac<i>i</i>t aute<i>n</i>tic<i>is
+			</i>nu<i>mer</i>us p<i>re</i>cede<i>n</i>s <i>confirmatur</i><sup>i</sup> ca<i>usa</i>m</span>
+									
+								</li>
+							
+								<li id="line_3" contenteditable="false" spellcheck="true" data-bbox="7, 187, 952, 289" data-placeholder="Enter text for line 3" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ard </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">fac<i>i</i>t archidiacon<i>us</i><sup>ii</sup></span>
+									
+								</li>
+							
+								
+							
+								<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="0, 274, 405, 351" data-placeholder="Enter text for line 5" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">an </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">facit andreas</span>
+									
+								</li>
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="43, 319, 570, 415" data-placeholder="Enter text for line 6" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ber </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t bernhard<i>us</i></span>
+									
+								</li>
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="0, 392, 460, 480" data-placeholder="Enter text for line 7" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">bric </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t bricci<i>us</i></span>
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="0, 446, 470, 543" data-placeholder="Enter text for line 8" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">c </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">p<i>ar</i>uu<i>m </i>f<i>aci</i>t
+			capitulu<i>m</i></span>
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="45, 528, 453, 597" data-placeholder="Enter text for line 9" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">C </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">magnu<i>m </i>f<i>aci</i>t
+			codice<i>m</i></span>
+									
+								</li>
+							
+								
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="30, 593, 482, 663" data-placeholder="Enter text for line 11" class=""><b><i><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">con</span></i><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">sti </span></b><span style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t
+			constitut<i>i</i>one<i>m</i></span>
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="37, 627, 653, 729" data-placeholder="Enter text for line 12" class="">Cu<i>m</i><sup>i</sup> E magnu<i>m</i><sup>ii</sup>
+			v<i>e</i>l p<i>ar</i>u<i>m </i>sequitur
+									
+								</li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="17, 707, 477, 781" data-placeholder="Enter text for line 13" class="">numerus debet dici eodem titulo
+									
+								</li>
+							
+								<li id="line_14" contenteditable="false" spellcheck="true" data-bbox="45, 754, 809, 844" data-placeholder="Enter text for line 14" class="">Cu<i>m </i><b>C </b>sequitur numerus debet dici
+			quanto capitulo
+									
+								</li>
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="45, 819, 627, 900" data-placeholder="Enter text for line 15" class=""><b><i><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">con </span></i></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">v<i>e</i>l <b>co<i>n </i></b>f<i>aci</i>t
+			<i>con</i>secrat<i>i</i>ones</span>
+									
+								</li>
+							
+								<li id="line_16" contenteditable="false" spellcheck="true" data-bbox="41, 893, 441, 969" data-placeholder="Enter text for line 16" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">sen </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t sentenciam</span>
+									
+								</li>
+							
+								<li id="line_17" contenteditable="false" spellcheck="true" data-bbox="36, 960, 479, 1032" data-placeholder="Enter text for line 17" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Contest </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t co<i>n</i>testac<i>i</i>onem</span>
+									
+								</li>
+							
+								<li id="line_18" contenteditable="false" spellcheck="true" data-bbox="29, 1029, 574, 1100" data-placeholder="Enter text for line 18" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">d </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">aut <b>dis </b>f<i>aci</i>t
+			disti<i>n</i>ct<i>i</i>o<i>ne</i>m</span>
+									
+								</li>
+							
+								
+							
+								<li id="line_20" contenteditable="false" spellcheck="true" data-bbox="19, 1095, 257, 1150" data-placeholder="Enter text for line 20" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">d. </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">cu<i>m </i><b>p. </b>f<i>aci</i>t
+			disti<i>n</i>ct<i>i</i>one<i>m </i>d<i>e </i>p<i>e</i>ni<i>tenci</i>a</span>
+									
+								</li>
+							
+								
+							
+								<li id="line_22" contenteditable="false" spellcheck="true" data-bbox="23, 1149, 344, 1211" data-placeholder="Enter text for line 22" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">d. </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">cu<i>m </i><b>co<i>n </i></b>f<i>aci</i>t
+			disti<i>n</i>ct<i>i</i>one<i>m </i>de <i>con</i>secrat<i>i</i>one</span>
+									
+								</li>
+							
+								<li id="line_23" contenteditable="false" spellcheck="true" data-bbox="19, 1203, 830, 1275" data-placeholder="Enter text for line 23" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Ext<i>ra </i></span></b><span style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t ext<i>ra</i>uaga<i>n</i>tib<i>us
+			</i>que ide<i>m </i>est que decretal<i>es</i></span>
+									
+								</li>
+							
+								<li id="line_24" contenteditable="false" spellcheck="true" data-bbox="8, 1251, 1136, 1340" data-placeholder="Enter text for line 24" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">E </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">magnu<i>m </i>v<i>e</i>l <b>e.
+			</b>p<i>ar</i>uu<i>m </i>f<i>aci</i>t eode<i>m </i>v<i>e</i>l eadem v<i>e</i>l
+			eiusde<i>m</i></span>
+									
+								</li>
+							
+								
+							
+								
+							
+								<li id="line_27" contenteditable="false" spellcheck="true" data-bbox="20, 1326, 697, 1418" data-placeholder="Enter text for line 27" class="">Cum <b>E </b>seq<i>ui</i>t<i>ur </i>p<i>ar</i>ag<i>ra</i>f<i>us
+			</i>t<i>itulis</i>▼ v<i>e</i>l ¶
+									
+								</li>
+							
+								<li id="line_28" contenteditable="false" spellcheck="true" data-bbox="25, 1399, 377, 1458" data-placeholder="Enter text for line 28">deb<i>et </i>dici eodem p<i>ar</i>agrafo
+									
+								</li>
+							
+								<li id="line_29" contenteditable="false" spellcheck="true" data-bbox="23, 1446, 469, 1521" data-placeholder="Enter text for line 29">Cum ve<i>r</i>o numerus sequit<i>ur </i>paragrafu<i>m</i>
+									
+								</li>
+							
+								<li id="line_30" contenteditable="false" spellcheck="true" data-bbox="22, 1516, 408, 1583" data-placeholder="Enter text for line 30">deb<i>et </i>dici quotoi<sup>ii</sup> p<i>ar</i>agrafo
+									
+								</li>
+							
+								
+							
+								<li id="line_32" contenteditable="false" spellcheck="true" data-bbox="22, 1574, 292, 1642" data-placeholder="Enter text for line 32" class="">Cu<i>m </i><b>l.</b><sup>iv</sup> magnu<i>m</i><sup>ii</sup>
+			seq<i>uitur </i><b>e </b>debet
+									
+								</li>
+							
+								<li id="line_33" contenteditable="false" spellcheck="true" data-bbox="9, 1627, 635, 1695" data-placeholder="Enter text for line 33">dici eadem lege
+									
+								</li>
+							
+								<li id="line_34" contenteditable="false" spellcheck="true" data-bbox="36, 1675, 750, 1754" data-placeholder="Enter text for line 34"><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Ex </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t ex<i>com</i>unicat<i>i</i>onem,
+			<b>ff </b>dupl<i>icis</i><sup>i</sup> f<i>aci</i>t digest<i>us</i></span>
+									
+								</li>
+							
+								
+							
+								<li id="line_36" contenteditable="false" spellcheck="true" data-bbox="25, 1752, 374, 1829" data-placeholder="Enter text for line 36" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">ho </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t hostiens<i>is</i></span>
+									
+								</li>
+							
+								<li id="line_37" contenteditable="false" spellcheck="true" data-bbox="25, 1814, 751, 1893" data-placeholder="Enter text for line 37" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">insti </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">facit i<i>n</i>stitut<i>is</i>,
+			longu<i>m </i><b>I </b>f<i>aci</i>t i<i>n</i>fra</span>
+									
+								</li>
+							
+							
+							
+								<li id="line_39" contenteditable="false" spellcheck="true" data-bbox="22, 1884, 540, 1955" data-placeholder="Enter text for line 39" class="">p<i>ar</i>vum f<i>aci</i>t signu<i>m </i>p<i>ri</i>mo
+									
+								</li>
+							
+								<li id="line_40" contenteditable="false" spellcheck="true" data-bbox="22, 1943, 639, 2022" data-placeholder="Enter text for line 40" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">In </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t i<i>n</i>noce<i>n</i>ti<i>us</i>,
+			<b>Io </b>f<i>aci</i>t ioha<i>n</i>nes</span>
+									
+								</li>
+							
+								<li id="line_41" contenteditable="false" spellcheck="true" data-bbox="23, 2015, 601, 2088" data-placeholder="Enter text for line 41" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Io an </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t Joha<i>n</i>nes
+			andree</span>
+									
+								</li>
+							
+							
+							
+								<li id="line_43" contenteditable="false" spellcheck="true" data-bbox="25, 2079, 470, 2157" data-placeholder="Enter text for line 43" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Io mo </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t Joh<i>ann</i>es
+			mo<i>n</i>ach<i>us</i></span>
+									
+								</li>
+							
+								<li id="line_44" contenteditable="false" spellcheck="true" data-bbox="14, 2135, 261, 2237" data-placeholder="Enter text for line 44" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">p </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t petr<i>us</i></span>
+									
+								</li>
+							
+								<li id="line_45" contenteditable="false" spellcheck="true" data-bbox="10, 2210, 639, 2305" data-placeholder="Enter text for line 45"><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">l </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">mag<i>num </i>f<i>aci</i>t
+			lege<i>m</i>, <b>l </b>p<i>ar</i>uu<i>m </i>f<i>aci</i>t</span>
+									
+								</li>
+							
+							
+							
+								<li id="line_47" contenteditable="false" spellcheck="true" data-bbox="14, 2289, 392, 2358" data-placeholder="Enter text for line 47">qui<i>n</i>quagi<i>n</i>ta i<i>n </i>nu<i>mer</i>o
+									
+								</li>
+							
+								<li id="line_48" contenteditable="false" spellcheck="true" data-bbox="27, 2311, 771, 2420" data-placeholder="Enter text for line 48" class="">Cum <b>l. </b>sequit<i>ur </i><b>e </b>d<i>ebet </i>dici
+			eodem lege
+									
+								</li>
+							
+								<li id="line_49" contenteditable="false" spellcheck="true" data-bbox="43, 2409, 405, 2481" data-placeholder="Enter text for line 49" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">lau </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t laure<i>n</i>ci<i>us</i></span>
+									
+								</li>
+							
+								<li id="line_50" contenteditable="false" spellcheck="true" data-bbox="34, 2476, 804, 2548" data-placeholder="Enter text for line 50" class="">Si<sup>i</sup> numerus succedit <b>q.</b>, f<i>aci</i>t
+			quota<sup>iii</sup> q<i>ue</i>stio<i>n</i>e
+									
+								</li>
+							
+								<li id="line_51" contenteditable="false" spellcheck="true" data-bbox="166, 2542, 659, 2613" data-placeholder="Enter text for line 51" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">q </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t q<i>ue</i>stione<i>m</i>,
+			<b>Ray </b>f<i>aci</i>t raymu<i>n</i>d<i>us</i></span>
+									
+								</li>
+							
+							
+							
+								<li id="line_54" contenteditable="false" spellcheck="true" data-bbox="21, 2594, 520, 2713" data-placeholder="Enter text for line 54" class=""><b><span style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u </span></b><span style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:EN-US;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">f<i>aci</i>t v<i>er</i>su<i>m</i>,
+			p<i>…</i>e<sup>v</sup> seq<i>ui</i>t<i>ur </i>f<i>aci</i>t eodem versum</span>
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

@@ -1,0 +1,401 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink11"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A055.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 10.64921465968586%; top: 1.1079527307569466%; width: 70.45388642770842%; height: 4.439476205685085%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 28.11115585984696%; top: 5.9405940594059405%; width: 71.76802255336287%; height: 5.589268604279783%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 25.734997986306887%; top: 10.731395720217183%; width: 72.21103503826016%; height: 5.653145959757266%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 22.311719693918647%; top: 15.362503992334718%; width: 77.16472009665726%; height: 5.004471414883424%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 8.8457511075312123%; top: 20.40881507505589%; width: 88.83205799436166%; height: 4.876716703928458%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 8.712041884816754%; top: 25.998083679335675%; width: 89.64357631896898%; height: 4.70712232513574%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_14" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.35722915827628%; top: 30.62919195145321%; width: 88.24003221908981%; height: 5.429575215586075%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_21" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 9.021345146999597%; top: 35.51580964548068%; width: 88.40112766814337%; height: 5.429575215586075%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_23" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 9.10189287152638%; top: 40.53018205046311%; width: 90.65646395489327%; height: 5.5253912488023%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_24" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 8.900523560209423%; top: 45.38486106675184%; width: 86.34716069271043%; height: 5.653145959757266%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_25" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 8.900523560209423%; top: 50.01596933886937%; width: 88.96496173983085%; height: 5.71702331523475%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_28" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 10.63229963753524%; top: 55.12615777706803%; width: 87.3942811115586%; height: 5.557329926541041%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_30" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 9.14216673378977%; top: 60.07665282657298%; width: 87.66532420459122%; height: 5.269881826892367%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_33" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.558598469593234%; top: 64.99520919833918%; width: 87.8372935964559%; height: 4.397636537847333%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_34" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 12.082158679017319%; top: 70.04152028106036%; width: 85.98469593233992%; height: 4.237943149153625%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_36" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.679420056383407%; top: 74.11977004152028%; width: 84.37374144180427%; height: 4.982433727243692%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_37" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.43777688280306%; top: 79.14404343660172%; width: 83.44744260974628%; height: 4.7489619929734905%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_38" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 10.26983487716472%; top: 84.22229319706165%; width: 88.52194925493355%; height: 4.365697860108591%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_40" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.115585984695933%; top: 88.85340146917918%; width: 88.7233185662505%; height: 5.653145959757266%; z-index: 2;"></a>
+					
+					
+					
+						
+					
+						<a class="rect" alt="line_43" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/15.html" title="" style="position: absolute; left: 11.03503826016915%; top: 94.12328329607155%; width: 87.63592428513894%; height: 4.589268604279783%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="910, 66, 1691, 205" data-placeholder="Enter text for line 5" class="">De ini<span lang="RO" style="font-size:
+			12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;
+			line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">io imperii Henrici quarti</span><span lang="LA" style="font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:
+			RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"></span>
+									
+								</li>
+							
+								
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="698, 186, 2480, 361" data-placeholder="Enter text for line 7" class="">Anno Heinrici primo qui fuit,
+			s&lt;cilicet&gt; ab incarna-
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="639, 336, 2432, 513" data-placeholder="Enter text for line 8" class="">cione Domini M lvii ab inicio vero
+			mundi
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="554, 481, 2470, 669" data-placeholder="Enter text for line 9" class="">quinti&lt;millesimo&gt; xx.
+			Colonie generali conuentu ha-
+									
+								</li>
+							
+							
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="21, 639, 2475, 823" data-placeholder="Enter text for line 11" class="">bito Balduinus et Gotfridus
+			mediante papa
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="117, 814, 2467, 1024" data-placeholder="Enter text for line 12" class="">Uictore ad gratiam regis ad
+			pacem reducuntur
+									
+								</li>
+							
+								
+								
+							
+								<li id="line_14" contenteditable="false" spellcheck="true" data-bbox="282, 959, 2473, 1129" data-placeholder="Enter text for line 14" class="">et omnes bellorum motus sedantur.
+			Anno II. Fri-
+									
+								</li>
+							
+					
+								
+							
+								<li id="line_21" contenteditable="false" spellcheck="true" data-bbox="224, 1112, 2419, 1282" data-placeholder="Enter text for line 21" class="">dericus filius Gothelonis ducis
+			et clerico Lam-
+									
+								</li>
+							
+								
+							
+								<li id="line_23" contenteditable="false" spellcheck="true" data-bbox="226, 1269, 2477, 1442" data-placeholder="Enter text for line 23" class="">berti septimus leuita romane
+			ecclesie quia ex-
+									
+								</li>
+							
+								<li id="line_24" contenteditable="false" spellcheck="true" data-bbox="221, 1421, 2365, 1598" data-placeholder="Enter text for line 24" class="">osus erat Henrico imperatori
+			pro odio fratris
+									
+								</li>
+							
+								<li id="line_25" contenteditable="false" spellcheck="true" data-bbox="221, 1566, 2430, 1745" data-placeholder="Enter text for line 25" class="">sui Gothfridi regis post legacionem
+			Constan-
+									
+								</li>
+							
+								
+							
+								<li id="line_28" contenteditable="false" spellcheck="true" data-bbox="264, 1726, 2434, 1900" data-placeholder="Enter text for line 28" class="">tinopolitanam apud Cassinenses
+			monachus
+									
+								</li>
+							
+								
+							
+								<li id="line_30" contenteditable="false" spellcheck="true" data-bbox="227, 1881, 1634, 2046" data-placeholder="Enter text for line 30" class="hovered">et postea abbas factus
+			alteratus nomine Ste-
+									
+								</li>
+							
+							
+							
+								<li id="line_33" contenteditable="false" spellcheck="true" data-bbox="287, 2035, 2468, 2204" data-placeholder="Enter text for line 33" class="">phani Romane ecclesie C lvii
+			presidet. Paderbrun-
+									
+								</li>
+							
+								<li id="line_34" contenteditable="false" spellcheck="true" data-bbox="300, 2193, 2435, 2357" data-placeholder="Enter text for line 34" class="">na Germanie ciuitas combusta
+			est cum maio-
+									
+								</li>
+							
+								
+							
+								<li id="line_36" contenteditable="false" spellcheck="true" data-bbox="290, 2352, 2385, 2508" data-placeholder="Enter text for line 36" class="">ri ecclesia. In monasterio autem
+			monachorum Scotus
+									
+								</li>
+							
+								<li id="line_37" contenteditable="false" spellcheck="true" data-bbox="284, 2478, 2356, 2658" data-placeholder="Enter text for line 37" class="">quidam monachus Paternus nomine
+			multo tempore
+									
+								</li>
+							
+								<li id="line_38" contenteditable="false" spellcheck="true" data-bbox="255, 2637, 2453, 2805" data-placeholder="Enter text for line 38" class="">reclusus qui eciam hoc
+			incendium sepe predi-
+									
+								</li>
+							
+							
+							
+								<li id="line_40" contenteditable="false" spellcheck="true" data-bbox="276, 2782, 2479, 2959" data-placeholder="Enter text for line 40" class="">xerat propter propositum
+			reclusionis exire nolens
+									
+								</li>
+							
+							
+								
+							
+								<li id="line_43" contenteditable="false" spellcheck="true" data-bbox="274, 2947, 2450, 3122" data-placeholder="Enter text for line 43" class="">se comburi passus est. Actor.
+			Hic sic refert</li>
+	
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

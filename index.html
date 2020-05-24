@@ -1,0 +1,2094 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Paleografie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-fixed">
+      
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+				<div class="p-4 pt-5" id="fixednav">
+		  		<h1><a href="index.html" class="logo">Paleografie
+            Demo
+            Title
+          </a></h1>
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Secol</a>
+	            <ul class="collapse show list-unstyled" id="homeSubmenu">
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="xiv-filter" class="custom-control-input" id="XIV" checked>
+                    <label class="custom-control-label" for="XIV">secolul XIV-lea</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="xv-filter" class="custom-control-input" id="XV" checked>
+                    <label class="custom-control-label" for="XV">secolul XV-lea</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="xvi-filter" class="custom-control-input" id="XVI" checked>
+                    <label class="custom-control-label" for="XVI">secolul XVI-lea</label>
+                  </div>
+                </li>
+	            </ul>
+			  </li>
+			  <li class="active">
+	            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false"   class="dropdown-toggle">Tip scriere</a>
+	            <ul class="collapse show list-unstyled" id="homeSubmenu2">
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="cursiva-gotica-filter" class="custom-control-input" id="cursiva-gotica" checked>
+                    <label class="custom-control-label" for="cursiva-gotica">Cursivă gotică</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="cursiva-gotica-veche-filter" class="custom-control-input" id="cursiva-gotica-veche" checked>
+                    <label class="custom-control-label" for="cursiva-gotica-veche">Cursivă gotică veche</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="minuscula-gotica-filter" class="custom-control-input" id="minuscula-gotica" checked>
+                    <label class="custom-control-label" for="minuscula-gotica">Minusculă gotică</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="minuscula-umanistica-filter" class="custom-control-input" id="minuscula-umanistica" checked>
+                    <label class="custom-control-label" for="minuscula-umanistica">Minusculă umanistică</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="cursiva-umanistica-filter" class="custom-control-input" id="cursiva-umanistica" checked>
+                    <label class="custom-control-label" for="cursiva-umanistica">Cursivă umanistică</label>
+                  </div>
+                </li>
+	            </ul>
+			  </li>
+			  <li class="active">
+	            <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mediu de scriere</a>
+	            <ul class="collapse show list-unstyled" id="homeSubmenu3">
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="document-filter" class="custom-control-input" id="document" checked>
+                    <label class="custom-control-label" for="document">Document</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="carte-manuscris-filter" class="custom-control-input" id="carte-manuscris" checked>
+                    <label class="custom-control-label" for="carte-manuscris">Carte manuscrisă</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" rel="registru-filter" class="custom-control-input" id="registru" checked>
+                    <label class="custom-control-label" for="registru">Registru</label>
+                  </div>
+                </li>
+             </ul>
+        </li>
+        
+			 <!--  <li class="active">
+	            <a href="#homeSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Century</a>
+	            <ul class="collapse show list-unstyled" id="homeSubmenu4">
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                    <label class="custom-control-label" for="defaultChecked2">8th century</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                    <label class="custom-control-label" for="defaultChecked2">9th century</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                    <label class="custom-control-label" for="defaultChecked2">10th century</label>
+                  </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">11th century</label>
+          </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">12th century</label>
+          </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">13th century</label>
+          </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">14th century</label>
+          </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">15th century</label>
+          </div>
+				</li>
+				<li>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+            <label class="custom-control-label" for="defaultChecked2">16th century</label>
+          </div>
+                </li>
+	            </ul>
+	          </li> -->
+	        </ul>
+
+	        <div class="mb-5">
+						<h3 class="h6" id="ubb"><a href="https://www.ubbcluj.ro/ro/" target="_blank">UBB Cluj Napoca</a></h3>
+						
+					</div>
+
+	        <div class="footer">
+	        <!-- 	<p>
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart" aria-hidden="true"></i> by Adinel</a>
+						  </p> -->
+	        </div>
+
+	      </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+
+        <h2 class="mb-4">Documents and Digital Writing</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sectiune de <a id="teorielink" href="#" data-toggle="modal" data-target="#teorieModal">Teorie Lorem Ipsum</a></p>
+        
+        <h2>DOCUMENTE DISPONIBILE</h2>
+<div id="myBtnContainer">
+<!-- <button class="btn active" id="checkall" onclick="console.log('latin')"> Show all</button> -->
+  
+ <!--  <button class="btn" onclick="filterSelection('latin')"> Latin</button>
+  <button class="btn" onclick="filterSelection('carolingian')"> Carolingian</button>
+  <button class="btn" onclick="filterSelection('german')"> German</button> -->
+</div>
+
+<!-- Document Grid -->
+<div class="row">
+  <div class="column cursiva-gotica-filter xiv-filter document-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA005">
+      <img class="center-block" src="images/A005.jpg" class="rounded" width=300 height=>
+      <h4>A005</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  <div class="column cursiva-gotica-filter xiv-filter document-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA010">
+      <img class="center-block" src="images/A010.jpg" class="rounded" width=300 height=>
+      <h4>A010 </h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  
+  <div class="column cursiva-gotica-veche-filter xiv-filter document-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA015">
+      <img class="center-block" src="images/A015.jpg" class="rounded" width=300 height=>
+      <h4>A015 </h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+
+  <div class="column cursiva-gotica-veche-filter xiv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA020">
+      <img class="center-block" src="images/A020.jpg" class="rounded" width=200 height=300>
+      <h4>A020</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  <div class="column minuscula-gotica-filter xiv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA025">
+      <img class="center-block" src="images/A025.jpg" class="rounded" width=200 height=300>
+      <h4>A025</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  <div class="column minuscula-gotica-filter xiv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA030">
+      <img class="center-block" src="images/A030.jpg" class="rounded" width=200 height=300>
+      <h4>A030</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+
+  <div class="column minuscula-gotica-filter xv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA035">
+      <img class="center-block" src="images/A035.jpg" class="rounded" width=300 height=>
+      <h4>A035</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA040">
+      <img class="center-block" src="images/A040.jpg" class="rounded" width=300 height=>
+      <h4>A040</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+  <div class="column cursiva-gotica-veche-filter xv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA045">
+      <img class="center-block" src="images/A045.jpg" class="rounded" width=300 height=>
+      <h4>A045</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+  </div>
+  <div class="column cursiva-gotica-veche-filter xv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA050">
+      <img class="center-block" src="images/A050.jpg" class="rounded" width=300 height=>
+      <h4>A050</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter carte-manuscris-filter">
+    <div class="content" id="page1" data-toggle="modal" data-target="#ModalA055">
+      <img class="center-block" src="images/A055.jpg" class="rounded" width=200 height=300>
+      <h4>A055</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA060">
+      <img class="center-block" src="images/A060.jpg" class="rounded" width=300 height=>
+      <h4>A060</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA065">
+      <img class="center-block" src="images/A065.jpg" class="rounded" width=300 height=>
+      <h4>A065</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column minuscula-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA070">
+      <img class="center-block" src="images/A070.jpg" class="rounded" width=300 height=>
+      <h4>A070</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA075">
+      <img class="center-block" src="images/A075.jpg" class="rounded" width=300 height=>
+      <h4>A075</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter registru-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA080">
+      <img class="center-block" src="images/A080.jpg" class="rounded" width=200 height=300>
+      <h4>A080</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column minuscula-umanistica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA085">
+      <img class="center-block" src="images/A085.jpg" class="rounded" width=300 height=>
+      <h4>A085</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA090">
+      <img class="center-block" src="images/A090.jpg" class="rounded" width=300 height=>
+      <h4>A090</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA095">
+      <img class="center-block" src="images/A095.jpg" class="rounded" width=300 height=>
+      <h4>A095</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column minuscula-gotica-filter cursiva-gotica-filter xv-filter registru-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA100">
+      <img class="center-block" src="images/A100.jpg" class="rounded" width=200 height=300>
+      <h4>A100</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA105">
+      <img class="center-block" src="images/A105.jpg" class="rounded" width=300 height=>
+      <h4>A105</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-umanistica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA110">
+      <img class="center-block" src="images/A110.jpg" class="rounded" width=300 height=>
+      <h4>A110</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-umanistica-filter xv-filter document-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA115">
+      <img class="center-block" src="images/A115.jpg" class="rounded" width=300 height=>
+      <h4>A115</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+   <div class="column cursiva-gotica-filter xvi-filter registru-filter">
+    <div class="content"id="page1" data-toggle="modal" data-target="#ModalA120">
+      <img class="center-block" src="images/A120.jpg" class="rounded" width=200 height=300>
+      <h4>A120</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit descriere</p>
+    </div>
+   </div>
+  
+  
+</div>
+  <!-- Modal for A05 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA005" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A005 &nbsp &nbsp</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez" src="A005.html" height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A005 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XIV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox" onchange="toggleCheck1()" unchecked data-toggle="toggle">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!--End for A005----------------------------------------------------------------------------------------------------------------------------->  
+
+  <!-- Modal for A010 ---------------------------------------------------->
+  <div class="container">
+    <div class="row">
+  
+      <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+    </div>
+  
+    <div class="modal fade modal-fullscreen" id="ModalA010" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">A010</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-10">
+                <iframe id= "iframez2" src="A010.html"  height="100%" width="100%"></iframe>
+              </div>
+              <div class="col-2">
+                <div class="card">
+                  
+                  <div class="card-body">
+                    <h5 class="card-title">A010 <br>
+                      Lorem ipsum
+                    </h5>
+                    <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+           </p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                    <li class="list-group-item"><b>Secol:</b> XIV</li>
+                    <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                    <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                  </ul>
+                
+                </div>
+              </div>
+            </div>
+          
+            
+        
+          </div>
+          <div class="modal-footer">
+            <div class= "row" id="footer_zoom">
+              <p>&nbsp</p>
+              <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+              <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+              <input type="checkbox" id="myCheckbox2" onchange="toggleCheck2()" unchecked data-toggle="toggle">
+             
+          </div>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<!---End for ModalA010-------------------------------------------------------------------------------------------------------------------------->
+
+  <!-- Modal for A015 ---------------------------------------------------->
+  <div class="container">
+    <div class="row">
+  
+      <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+    </div>
+  
+    <div class="modal fade modal-fullscreen" id="ModalA015" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">A015</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-10">
+                <iframe id= "iframez3" src="A015.html"  height="100%" width="100%"></iframe>
+              </div>
+              <div class="col-2">
+                <div class="card" >
+                 
+                  <div class="card-body">
+                    <h5 class="card-title">A015 <br>
+                      Lorem ipsum
+                    </h5>
+                    <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+  
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                 </p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                    <li class="list-group-item"><b>Secol:</b> XIV</li>
+                    <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                    <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                  </ul>
+                
+                </div>
+              </div>
+            </div>
+          
+            
+        
+          </div>
+          <div class="modal-footer">
+            <div class= "row" id="footer_zoom">
+              <p>&nbsp</p>
+              <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+              <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+              <input type="checkbox" id="myCheckbox3" onchange="toggleCheck3()" unchecked data-toggle="toggle">
+             
+          </div>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<!---End for ModalA015-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A020 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA020" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A020</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez4" src="A020.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+             
+                <div class="card-body">
+                  <h5 class="card-title">A020 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică veche</li>
+                  <li class="list-group-item"><b>Secol:</b> XIV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox4" onchange="toggleCheck4()" unchecked data-toggle="toggle">
+           
+        </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA020-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A025 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA025" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A025</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez5" src="A025.html" height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">A025 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                   </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XIV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox5" onchange="toggleCheck5()" unchecked data-toggle="toggle">
+           
+        </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA025-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A030 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA030" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A030</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez6" src="A030.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A030 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+               </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XIV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox6" onchange="toggleCheck6()" unchecked data-toggle="toggle">
+           
+        </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA030-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A035 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA035" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A035</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez7" src="A035.html" height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">A035 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox7" onchange="toggleCheck7()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA035-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A040 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA040" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A040</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez8" src="A040.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A040 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+ </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox8" onchange="toggleCheck8()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA040-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A045 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA045" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A045</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez9" src="A045.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A045 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică veche</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox9" onchange="toggleCheck9()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA045-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A050 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA050" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A050</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez10" src="A050.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">A050 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică veche</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox10" onchange="toggleCheck10()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA050-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A055 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA055" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A055</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez11" src="A055.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+          
+                <div class="card-body">
+                  <h5 class="card-title">A055 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică veche</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Carte manuscrisă</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox11" onchange="toggleCheck11()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA055-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A060 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA060" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A060</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez12" src="A060.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+          
+                <div class="card-body">
+                  <h5 class="card-title">A060 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox12" onchange="toggleCheck12()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA060-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A065 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA065" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A065</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez13" src="A065.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+               
+                <div class="card-body">
+                  <h5 class="card-title">A065 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+           </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox13" onchange="toggleCheck13()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA065-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A070 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA070" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A070</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez14" src="A070.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+           
+                <div class="card-body">
+                  <h5 class="card-title">A070 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                     </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox14" onchange="toggleCheck14()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA070-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A075 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA075" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A075</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez15" src="A075.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+               
+                <div class="card-body">
+                  <h5 class="card-title">A075 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+ </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă  gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox15" onchange="toggleCheck15()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA075-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A080 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA080" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A080</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez16" src="A080.html" height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+            
+                <div class="card-body">
+                  <h5 class="card-title">A080 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă  gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Registru</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox16" onchange="toggleCheck16()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA080-------------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Modal for A085 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA085" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A085</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez17" src="A085.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">A085 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                     </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă umanistică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox17" onchange="toggleCheck17()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA085-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A090 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA090" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A090</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez18" src="A090.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+              
+                <div class="card-body">
+                  <h5 class="card-title">A090 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+            </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox18" onchange="toggleCheck18()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA090-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A095 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA095" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A095</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez19" src="A095.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A095 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox19" onchange="toggleCheck19()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA095-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A100 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA100" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A100</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez20" src="A100.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A100 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+            </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Minusculă gotică, cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Registru</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox20" onchange="toggleCheck20()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA100-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A105 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA105" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A105</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez21" src="A105.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+               
+                <div class="card-body">
+                  <h5 class="card-title">A105 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                   </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox21" onchange="toggleCheck21()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA105-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A110 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA110" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A110</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez22" src="A110.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+               
+                <div class="card-body">
+                  <h5 class="card-title">A110 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                   </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă umanistică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox22" onchange="toggleCheck22()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA110-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A115 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA115" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A115</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez23" src="A115.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">A115 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                   </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă umanistică</li>
+                  <li class="list-group-item"><b>Secol:</b> XV</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Document</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox23" onchange="toggleCheck23()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA115-------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal for A120 ---------------------------------------------------->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#myModal" id="trigger-btn">Start</button> -->
+  </div>
+
+  <div class="modal fade modal-fullscreen" id="ModalA120" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">A120</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <iframe id= "iframez24" src="A120.html"  height="100%" width="100%"></iframe>
+            </div>
+            <div class="col-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">A120 <br>
+                    Lorem ipsum
+                  </h5>
+                  <p class="card-text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum <br>
+                   </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Tip Scriere :</b> Cursivă gotică</li>
+                  <li class="list-group-item"><b>Secol:</b> XVI</li>
+                  <li class="list-group-item"><b>Mediu de scriere:</b> Registru</li>
+                  <li class="list-group-item"><b>Additional info:</b> Lorem ipsum</li>
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+        
+          
+      
+        </div>
+        <div class="modal-footer">
+          <div class= "row" id="footer_zoom">
+            <p>&nbsp</p>
+            <i class="fas fa-search-plus" style="font-size:36px;"> &nbsp</i>
+            <h4 class="modal-title" id="glasstext" >&nbsp Toggle Zoom &nbsp &nbsp</h4>
+            <input type="checkbox" id="myCheckbox24" onchange="toggleCheck24()" unchecked data-toggle="toggle">
+           </div>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!---End for ModalA120-------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+<!--Modal Teorie-->
+<div class="container">
+  <div class="row">
+
+    <!-- <button type="button" class="btn btn-lg"  data-toggle="modal" data-target="#teorieModal" id="trigger-btn">Start</button>
+  </div> -->
+
+  <div class="modal fade modal-fullscreen" id="teorieModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="teorieModal">Teorie Lorem Ipsum</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+         
+          <nav class="nav flex-column">
+            <a class="nav-link active" id="teoriea" href="#link1">Lorem ipsum Link 1</a>
+            <a class="nav-link active" id="teoriea" href="#link2">Lorem ipsum Link 2</a>
+            <a class="nav-link active" id="teoriea" href="#link3">Lorem ipsum Link 3</a>
+            <a class="nav-link active" id="teoriea" href="#link4">Lorem ipsum Link 4</a>
+            <a class="nav-link active" id="teoriea" href="#link5">Lorem ipsum Link 5</a>
+            <a class="nav-link active" id="teoriea" href="#link6">Lorem ipsum Link 6</a>
+            <a class="nav-link active" id="teoriea" href="#link7">Lorem ipsum Link 7</a>
+            </nav>
+            <br>
+            <div id="link1">
+              <h2>Link 1 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+            <div id="link2">
+              <h2>Link 2 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+            <div id="link3">
+              <h2>Link 3 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+            <div id="link4">
+              <h2>Link 4 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+            <div id="link5">
+              <h2>Link 5 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+            <div id="link6">
+              <h2>Link 6 Lorem Ipsum Text Details?</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+              <div id="link7">
+              <h2>Link 7 Lorem Ipsum Text Details</h2><br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            </div><br>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- END GRID -->
+
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

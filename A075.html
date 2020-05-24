@@ -1,0 +1,267 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink15"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A075.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 1.0213143872113677%; top: 8.43108504398827%; width: 97.298401420959145%; height: 10.416422287390029%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 2.3090586145648313%; top: 18.381231671554254%; width: 97.43428063943162%; height: 10.777126099706745%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 4.3294849023090585%; top: 27.69208211143695%; width: 95.02220248667851%; height: 9.87683284457478%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 5.084369449378331%; top: 35.557184750733136%; width: 91.6740674955595%; height: 9.395894428152493%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 4.951154529307282%; top: 46.57478005865103%; width: 58.725577264653644%; height: 12.082111436950147%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 6.19449378330373%; top: 66.74780058651027%; width: 44.318827708703374%; height: 16.662756598240469%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/24.html" title="" style="position: absolute; left: 4.30728241563055%; top: 80.64516129032258%; width: 32.59325044404974%; height: 16.281524926686217%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+		
+		<li id="line_1" contenteditable="false" spellcheck="false" data-bbox="46, 115, 1816, 298" data-placeholder="Enter text for line 1">Salutem benedictione cum paterna. Prudens vir mi
+			plurimum honorande. Ecce ad v&lt;estram&gt; p&lt;rudentiam&gt; et s&lt;agacitatem&gt;
+									
+								</li>
+							
+								<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="104, 278, 1745, 425" data-placeholder="Enter text for line 2">religiosum virum, fratrem Stanislaum, in certis
+			nostris legacionibus duxi destinandum
+									
+								</li>
+							
+								
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="195, 405, 1322, 567" data-placeholder="Enter text for line 7">v&lt;estre&gt; p&lt;rudentie&gt; referendis et
+			recitandis. Cuius verbis et dictis fidem credulam adhibeatis
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="229, 485, 4358, 695" data-placeholder="Enter text for line 8">plenariam. Ex Clwswar, feria quarta proxima post
+			festum beati Martini episcopi et
+									
+								</li>
+							
+								
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="223, 608, 2868, 841" data-placeholder="Enter text for line 10">confessoris, anno Domini millesimo
+			quadringentesimo LXmo sexto.
+									
+								</li>
+							
+								
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="279, 965, 1014, 1165" data-placeholder="Enter text for line 12">Per v&lt;estre&gt; d&lt;ominationis&gt;
+			Raymundum, episcopum Argensem
+									
+								</li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="194, 1100, 1662, 1363" data-placeholder="Enter text for line 13">ac abbatem de Kercz.
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

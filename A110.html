@@ -1,0 +1,290 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink22"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A110.jpg" draggable="false"/>
+			
+								<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 3.9236256819135544%; top: 9.589442815249267%; width: 94.94334872010072%; height: 10.175953079178885%; z-index: 2;"></a>
+					
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 19.345362987830466%; top: 18.328445747800586%; width: 75.66093159882502%; height: 6.9208211143695015%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 18.464120856063786%; top: 24.633431085043988%; width: 78.17876626101553%; height: 7.419354838709677%; z-index: 2;"></a>
+		
+		
+		
+			<a class="rect" alt="line_20" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 17.876626101552663%; top: 31.026392961876834%; width: 81.45195132186319%; height: 7.208211143695015%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_21" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 18.25430130088124%; top: 37.27272727272727%; width: 75.070919009651696%; height: 8.149560117302054%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_26" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 19.31766680654637%; top: 44.422287390029325%; width: 79.34326479227864%; height: 8.043988269794721%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_31" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 21.149811162400336%; top: 52.604105571847505%; width: 75.18925723877465%; height: 7.542521994134898%; z-index: 2;"></a>
+		
+			
+		
+			<a class="rect" alt="line_33" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 24.67477968946706%; top: 77.27272727272727%; width: 13.575325220310534%; height: 5.777126099706745%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_34" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 17.60386067981536%; top: 74.60703812316716%; width: 35.62736046999581%; height: 12.302052785923753%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_35" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/28.html" title="" style="position: absolute; left: 32.6202266051196%; top: 86.76539589442815%; width: 22.604280318925724%; height: 9.853372434017595%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		
+		<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="187, 327, 4712, 674" data-placeholder="Enter text for line 7">Prudentes et circumspecti, sincere nobis
+			dilecti. Hac ipsa die
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="922, 625, 4528, 861" data-placeholder="Enter text for line 8">adversa noua de Turcis accepimus, dicitur namque
+			quod omnino
+									
+								</li>
+							
+								
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="880, 840, 4606, 1093" data-placeholder="Enter text for line 15" class="">hoc regnum vellent inuadere. Ideo, consulite
+			rebus
+									
+								</li>
+							
+								
+							
+								<li id="line_20" contenteditable="false" spellcheck="true" data-bbox="852, 1058, 4734, 1372" data-placeholder="Enter text for line 20" class="">vestris, ne opprimamini incauti sicut hyeme
+			preterita.
+									
+								</li>
+							
+								<li id="line_21" contenteditable="false" spellcheck="true" data-bbox="870, 1271, 3590, 1583" data-placeholder="Enter text for line 21" class="">Divulgate nova hec, ut unusquisque se contineat.
+									
+								</li>
+							
+								
+							
+								<li id="line_26" contenteditable="false" spellcheck="true" data-bbox="1016, 1583, 3606, 1755" data-placeholder="Enter text for line 26" class="">Datum Albe, feria tercia proxima post diuisionem
+									
+								</li>
+							
+								
+							
+								<li id="line_31" contenteditable="false" spellcheck="true" data-bbox="1008, 1862, 3543, 2051" data-placeholder="Enter text for line 31" class="">apostolorum, anno Domini et cetera LXXXX tercio.
+									
+								</li>
+							
+								
+							
+								
+							
+								<li id="line_34" contenteditable="false" spellcheck="true" data-bbox="839, 2851, 2537, 3100" data-placeholder="Enter text for line 34">Ladislaus Gereb
+									
+								</li>
+							
+								<li id="line_35" contenteditable="false" spellcheck="true" data-bbox="1650, 3061, 2632, 3397" data-placeholder="Enter text for line 35">episcopus Transsilvanus
+									
+								</li>
+							
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

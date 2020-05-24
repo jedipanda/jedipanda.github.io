@@ -1,0 +1,409 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink13"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A065.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 2.771905097486493%; top: 2.223726627981947%; width: 92.9762743716232%; height: 21.308188265635074%; z-index: 2;"></a>
+					
+			<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 5.308902983321588%; top: 22.339780786589298%; width: 91.68428470754053%; height: 8.671179883945841%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_3" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 4.627672069532535%; top: 29.49645390070922%; width: 93.84543105473338%; height: 8.606705351386202%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 5.07399577167019%; top: 36.84655061250806%; width: 91.56683110171483%; height: 8.671179883945841%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_5" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 4.322292694385718%; top: 44.71244358478401%; width: 92.92929292929293%; height: 8.058027079303676%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 3.3356824054498473%; top: 52.191489361702125%; width: 95.79516091143998%; height: 10.767246937459703%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 4.2283298097251585%; top: 60.444229529335914%; width: 95.13742071881607%; height: 8.735654416505481%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 3.782006107587503%; top: 67.5364281108962%; width: 92.95278365045807%; height: 8.348807221147647%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 3.8524782710829224%; top: 74.37072856221792%; width: 95.0434578341555%; height: 8.929078014184396%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 4.110876203899459%; top: 81.97872340425532%; width: 95.11392999765093%; height: 8.798839458413926%; z-index: 2;"></a>
+		
+			<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/07d.html" title="" style="position: absolute; left: 4.275311252055438%; top: 88.81302385557704%; width: 25.74583039699319%; height: 9.122501611863314%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+		
+		<li id="line_1" contenteditable="false" spellcheck="true" data-bbox="118, 50, 4076, 396" data-placeholder="Enter text for line 1" class="">Nos<span lang="RO" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+			Georgius Thabiaschsi de Etczel memorie commenda</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">nte</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">s
+			significa</span><span lang="RO" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">mu</span><span lang="LA" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">s tenore presen</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ium
+			quibus</span>
+									
+								</li>
+							
+								<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="226, 362, 4129, 512" data-placeholder="Enter text for line 2" class="">expedit universis quod<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> quia
+			providi et honesti viri iudex, iurati</span><span lang="RO" style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> tam
+			ci</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:
+			&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+			minor-fareast;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">itatis Brasso</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">iensis,</span>
+									
+								</li>
+							
+								<li id="line_3" contenteditable="false" spellcheck="true" data-bbox="197, 473, 4192, 622" data-placeholder="Enter text for line 3" class="">quam terre Burcensis, iuxta lit<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">t</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">eratoria
+			mandata serenissimi principis et domini</span><span lang="RO" style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+			domini Mathie Hungarie,</span>
+									
+								</li>
+							
+								<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="216, 587, 4114, 737" data-placeholder="Enter text for line 4" class="">Dalmacie et cetera regis, domini nostri
+			gratiosissimi, eis loquentia, de solu<span lang="RO" style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ione
+			censuum sue maiestati</span>
+									
+								</li>
+							
+								<li id="line_5" contenteditable="false" spellcheck="true" data-bbox="184, 709, 4140, 865" data-placeholder="Enter text for line 5" class="">de medio ipsorum annis singulis circa festum
+			sancti Martini confessoris in argento fino<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+			ponderis</span>
+									
+								</li>
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="142, 825, 4220, 992" data-placeholder="Enter text for line 6" class="">incliti regis Bele provenientium, et per
+			magnificum virum dominum Ladislaum de Pac<span lang="RO" style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">k</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">os</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+			comitem Syculorum</span>
+									
+								</li>
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="180, 953, 4230, 1104" data-placeholder="Enter text for line 7" class="">ex<span lang="RO" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">i</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">gi deputatorum,
+			nobis nomine dicti domini nostri comitis S</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">y</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">culorum
+			centum et quindecim marcas</span>
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="161, 1063, 4118, 1208" data-placeholder="Enter text for line 8" class="">de anno presenti<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+			ponderis predicti, dederunt realiter et effecti</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">e
+			assigna</span><span lang="RO" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">u</span><span lang="LA" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">erunt, pro quibus</span>
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="164, 1169, 4210, 1323" data-placeholder="Enter text for line 9" class="">nomine domini nostri, ipsos reddimus qui<span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">e</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">tos
+			pariter et expeditos, presen</span><span lang="RO" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">c</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ium
+			lit</span><span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:
+			&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+			minor-fareast;mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:
+			AR-SA">t</span><span lang="LA" style="font-size:12.0pt;line-height:107%;
+			font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+			mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">erarum </span><span lang="RO" style="font-size:
+			12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:RO;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">nostrarum </span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">vigore
+			et</span>
+									
+								</li>
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="175, 1287, 4224, 1470" data-placeholder="Enter text for line 10" class="">testimonio mediante. Datis feria quarta proxima
+			post festum sancti Martini confessoris, anno <span lang="RO" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:RO;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">D</span><span lang="LA" style="font-size:12.0pt;line-height:107%;font-family:&quot;Times New Roman&quot;,serif;
+			mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;
+			mso-ansi-language:LA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">omini</span>
+									
+								</li>
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="182, 1393, 1278, 1550" data-placeholder="Enter text for line 11" class="">M<span lang="LA" style="font-size:12.0pt;
+			line-height:107%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-ansi-language:LA;
+			mso-fareast-language:EN-US;mso-bidi-language:AR-SA">illesimo CCCC<sup>o</sup>&nbsp;lviii<sup>o</sup>.</span>
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

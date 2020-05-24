@@ -1,0 +1,393 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+.element_to_magnify img {
+    width: 80%;
+    height: auto;
+}
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink18"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A090.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 3.7442599788060758%; top: 16.791589033803568%; width: 75.16072059342989%; height: 13.175405908969923%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_17" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.080536912751677%; top: 28.742613787596486%; width: 70.38879076886847%; height: 6.042054830982167%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_20" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.080536912751677%; top: 34.37396859196167%; width: 70.77817025785941%; height: 5.3766302901250995%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_23" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.209231131520076%; top: 38.33989885546979%; width: 70.7310726480631%; height: 6.201756720787863%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_24" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.409395973154362%; top: 43.91801969656641%; width: 70.20204874602614%; height: 5.3500133084908175%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_26" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.291651948663604%; top: 47.46952355602875%; width: 70.04733309784528%; height: 5.749268033005057%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_28" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.361474155186624%; top: 51.67500665424541%; width: 70.38879076886847%; height: 5.722651051370774%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_29" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.914046862121747%; top: 55.72078786265637%; width: 70.06240433298011%; height: 6.308224647324994%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_33" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.161309313552337%; top: 60.124035134415756%; width: 70.77817025785941%; height: 5.696034069736492%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_35" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.832450253149652%; top: 65.19643332446101%; width: 70.11797951253973%; height: 5.296779345222252%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_38" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.244554338867303%; top: 69.6414692573862%; width: 70.36606617214176%; height: 5.669417088102209%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_41" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.009066289885789%; top: 74.00665424540857%; width: 70.14235252560933%; height: 6.308224647324994%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_43" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.067938302131166%; top: 77.50492414160234%; width: 70.90851289297068%; height: 6.4945435187649725%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_47" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.27987754621453%; top: 82.710407239819%; width: 70.37866478276227%; height: 6.388075592227842%; z-index: 2;"></a>
+					
+						
+					
+						
+					
+						<a class="rect" alt="line_53" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.244554338867303%; top: 87.58131487889273%; width: 70.31896856234546%; height: 5.962203886079319%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_55" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/05.html" title="" style="position: absolute; left: 8.926645472742258%; top: 92.84003194037795%; width: 70.40056517131755%; height: 6.734096353473516%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+		
+		<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="318, 706, 8400, 1201" data-placeholder="Enter text for line 6" class="">Nos, Iohannes Marcus, iudex iuratique ciues
+			ciuitatis Coluswar damus pro memoria quod in nostri consistorio pro reddendis
+			suis unicuique consedentibus
+									
+								</li>
+							
+			
+							
+								<li id="line_17" contenteditable="false" spellcheck="true" data-bbox="1026, 1155, 8363, 1382" data-placeholder="Enter text for line 17" class="">nostri e medio circumspectus Georgius Sartor,
+			Anthonius Rodt iurati conciues surgendo fassi sunt: quomodo famosus Paulus
+			Cristoferi Itali et ho-
+									
+								</li>
+							
+								
+							
+								<li id="line_20" contenteditable="false" spellcheck="true" data-bbox="1026, 1329, 8481, 1531" data-placeholder="Enter text for line 20" class="">nesta domina Margaretha, soror eius germana,
+			coram eis veluti fidem presentibus et posteris facturis domum in theatro nostre
+			ciuitatis in vicinatibus
+									
+								</li>
+							
+								
+							
+								<li id="line_23" contenteditable="false" spellcheck="true" data-bbox="952, 1478, 8403, 1711" data-placeholder="Enter text for line 23" class="">providorum Erasmi Angeli et quondam magistri
+			Petri, notarii, sitam ac in eos hereditario iure deuolutam sine strepitu
+			concordi animo partiti sunt hoc modo:
+									
+								</li>
+							
+								<li id="line_24" contenteditable="false" spellcheck="true" data-bbox="969, 1650, 8460, 1851" data-placeholder="Enter text for line 24" class="">Quod directa et equa per longum a primo domus
+			limite usque ad extremum fundi ortus domui annexi et versa vice ad vltimo
+			limite, qui ad platheam
+									
+								</li>
+							
+			
+							
+								<li id="line_26" contenteditable="false" spellcheck="true" data-bbox="959, 1821, 8267, 2037" data-placeholder="Enter text for line 26" class="">Kyrgas tenditur usque ad primum introitum, qui
+			est a theatro orti curie et relique partis fusa medietas, que ab orientali
+			plaga domui honeste domine
+									
+								</li>
+							
+								
+							
+								<li id="line_28" contenteditable="false" spellcheck="true" data-bbox="880, 1979, 8217, 2194" data-placeholder="Enter text for line 28" class="">Margarethe relicte olim prefati magistri Petri,
+			notarii, contigua est, Paulo cedat antelato altera vero similiter tota directa
+			et equa medietas, que
+									
+								</li>
+							
+								<li id="line_29" contenteditable="false" spellcheck="true" data-bbox="842, 2131, 8491, 2368" data-placeholder="Enter text for line 29" class="">contigua est domui Erasmi Angeli ab occidentali
+			plaga domine Margarethe hoc pacto quecum edificia in parte Pauli structa
+			excederent mansiones partis
+									
+								</li>
+							
+			
+							
+								<li id="line_33" contenteditable="false" spellcheck="true" data-bbox="863, 2334, 8318, 2548" data-placeholder="Enter text for line 33" class="">alterius Paulus duo iugera vinearum cum medio et
+			item torcularis partem mediam, cuius altera medietas prius dominam spectabat
+			Margaretham
+									
+								</li>
+							
+								
+							
+								<li id="line_35" contenteditable="false" spellcheck="true" data-bbox="920, 2487, 8234, 2686" data-placeholder="Enter text for line 35" class="">in promontorio Brethofft dicto in vicinatibus
+			circumspectarum Lucie, relicte Balas, partibus vero ab altera prefate domine
+			Margarethe sitam et florenis
+									
+								</li>
+							
+								
+							
+								<li id="line_38" contenteditable="false" spellcheck="true" data-bbox="955, 2654, 8375, 2867" data-placeholder="Enter text for line 38" class="">Hungaricalis puri auri et iuste monete
+			quadraginta superaddens persolvit. Celarium autem, quod est sub introitu non
+			per longum, sed per transuersum diuisum
+									
+								</li>
+							
+								
+							
+								<li id="line_41" contenteditable="false" spellcheck="true" data-bbox="935, 2818, 8336, 3055" data-placeholder="Enter text for line 41" class="">est ita quod medietas posterior dominam
+			Margaretham autem partem eius concernat, pars vero eiusdem celarii anterior
+			prefatum Paulum spectet porta
+									
+								</li>
+							
+							
+							
+								<li id="line_43" contenteditable="false" spellcheck="true" data-bbox="940, 2987, 8491, 3231" data-placeholder="Enter text for line 43" class="">quoque introitus a parte theatri quousque
+			testudo ab ipsa porta protenditur parti sit utrique communis et libera in
+			aliisque omnibus et singulis clenodiis et vten-
+									
+								</li>
+							
+								
+							
+								<li id="line_47" contenteditable="false" spellcheck="true" data-bbox="958, 3145, 8464, 3385" data-placeholder="Enter text for line 47" class="">silibus equaliter se mutuo concentarunt et
+			placite diuiserunt. Super qua particione ad suorum iurium conservacionem
+			prefatis Paulo simul et domine Mar-
+									
+								</li>
+							
+								
+							
+								
+							
+								<li id="line_53" contenteditable="false" spellcheck="true" data-bbox="955, 3328, 8371, 3552" data-placeholder="Enter text for line 53" class="">garethe, literas nostras, sigilli nostri maioris
+			sub impressione roboratas, ad humiles eorum suplicacionibus concessimus. Datum
+			in Coluswar, feria
+									
+								</li>
+							
+								
+							
+								<li id="line_55" contenteditable="false" spellcheck="true" data-bbox="928, 3488, 8266, 3741" data-placeholder="Enter text for line 55" class="">sexta ante Natiuitatis Marie, anno Domini
+			millesimo quadringentesimo octuagesimo secundo.
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

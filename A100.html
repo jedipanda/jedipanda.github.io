@@ -1,0 +1,386 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+		opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+.element_to_magnify img {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+}
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink20"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A100.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_2" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 45.2991452991453%; top: 2.7899461400359067%; width: 28.88888888888889%; height: 4.709156193895871%; z-index: 2;"></a>
+
+						<a class="rect" alt="line_1" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 7.806267806267806%; top: 5.1597845601436267%; width: 90.84045584045584%; height: 5.68096947935368%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_3" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 8.831908831908832%; top: 10.904847396768401%; width: 80.914529914529915%; height: 4.775583482944345%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_7" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 9.686609686609687%; top: 15.644524236983843%; width: 80.40455840455841%; height: 4.416517055655296%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_8" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 10.54131054131054%; top: 20.025134649910232%; width: 77.15099715099716%; height: 5.098743267504489%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 8.67806267806268%; top: 23.615798922800717%; width: 83.675213675213676%; height: 5.026929982046679%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 9.8005698005698%; top: 26.499102333931777%; width: 81.62678062678063%; height: 5.068222621184919%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 6.60968660968661%; top: 32.53141831238779%; width: 81.71509971509972%; height: 4.452423698384201%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_13" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 8.774928774928775%; top: 36.768402154398565%; width: 81.074074074074076%; height: 4.955116696588869%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_17" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 7.749287749287749%; top: 41.508078994614%; width: 81.85470085470085%; height: 4.73967684021544%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_19" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 6.495726495726496%; top: 46.24775583482944%; width: 13.447293447293447%; height: 4.416517055655296%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_20" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 6.666666666666667%; top: 50.59245960502693%; width: 87.92022792022792%; height: 6.570915619389587%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_21" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 5.2421652421652425%; top: 56.086175942549374%; width: 81.98290598290598%; height: 6.4631956912028725%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_23" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 5.527065527065527%; top: 61.93895870736086%; width: 89.8005698005698%; height: 5.421903052064632%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_24" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 7.065527065527066%; top: 66.78635547576302%; width: 81.943019943019944%; height: 4.236983842010772%; z-index: 2;"></a>
+					
+					
+					
+						<a class="rect" alt="line_26" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 9.116809116809117%; top: 71.02333931777379%; width: 81.76923076923077%; height: 4.457809694793537%; z-index: 2;"></a>
+
+						<a class="rect" alt="line_30" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 2.65811965811966%; top: 75.97845601436266%; width: 81.615384615384617%; height: 4.021543985637343%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_27" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 7.635327635327635%; top: 80.14362657091561%; width: 81.695156695156694%; height: 4.021543985637343%; z-index: 2;"></a>
+					
+						
+						<a class="rect" alt="line_29" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 6.495726495726496%; top: 84.81687612208259%; width: 81.78062678062678%; height: 3.2675044883303412%; z-index: 2;"></a>
+					
+						
+					
+						
+					
+						<a class="rect" alt="line_33" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 6.210826210826211%; top: 89.04847396768402%; width: 81.737891737891736%; height: 4.236983842010772%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_35" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/21.html" title="" style="position: absolute; left: 7.806267806267806%; top: 93.24955116696589%; width: 77.89173789173789%; height: 6.283662477558348%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="column" id="col2">
+	<ul>
+		
+		<li id="line_2" contenteditable="false" spellcheck="true" data-bbox="795, 22, 1302, 181" data-placeholder="Enter text for line 2" class=""><span lang="RO" style="font-size:12.0pt;line-height:
+			150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;
+			mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Dÿ pulgereÿ</span></li>
+			
+								<li id="line_1" contenteditable="false" spellcheck="true" data-bbox="137, 88, 766, 249" data-placeholder="Enter text for line 1" class="">Stanislab dedit 38 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_3" contenteditable="false" spellcheck="true" data-bbox="155, 248, 680, 381" data-placeholder="Enter text for line 3" class="">Pyntha dedit 25 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_7" contenteditable="false" spellcheck="true" data-bbox="170, 380, 844, 503" data-placeholder="Enter text for line 7" class="">Caldarusch dedit 19 asperi
+									
+								</li>
+							
+								<li id="line_8" contenteditable="false" spellcheck="true" data-bbox="185, 502, 1539, 644" data-placeholder="Enter text for line 8" class="">Ywan dedit 10 asperi
+									
+								</li>
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="1100, 602, 1691, 742" data-placeholder="Enter text for line 9" class="">Katczo dedit 33 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="172, 738, 885, 907" data-placeholder="Enter text for line 11" class="">Swartz Pitter dedit 19 asperi
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="116, 906, 813, 1030" data-placeholder="Enter text for line 12" class=""><s><span lang="RO" style="font-size:12.0pt;line-height:
+			150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;
+			mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Dan</span></s><span lang="RO" style="font-size:
+			12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+			Calibri;mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA"> Radul dedit 31 asperi</span></li>
+							
+								<li id="line_13" contenteditable="false" spellcheck="true" data-bbox="154, 1024, 752, 1162" data-placeholder="Enter text for line 13" class="">Kerschyn dedit 21 asperi
+									
+								</li>
+							
+							
+							
+								<li id="line_17" contenteditable="false" spellcheck="true" data-bbox="136, 1156, 853, 1288" data-placeholder="Enter text for line 17" class="">Mikwl dedit 23 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_19" contenteditable="false" spellcheck="true" data-bbox="114, 1288, 350, 1411" data-placeholder="Enter text for line 19" class=""><s><span lang="RO" style="font-size:12.0pt;line-height:
+			150%;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:Calibri;
+			mso-fareast-theme-font:minor-latin;mso-ansi-language:RO;mso-fareast-language:
+			EN-US;mso-bidi-language:AR-SA">Ieno</span></s>
+									
+								</li>
+							
+								<li id="line_20" contenteditable="false" spellcheck="true" data-bbox="117, 1409, 1660, 1592" data-placeholder="Enter text for line 20" class="">Thodor dedit 14 asperi Dÿ ander czeyll</li>
+							
+								<li id="line_21" contenteditable="false" spellcheck="true" data-bbox="92, 1562, 899, 1742" data-placeholder="Enter text for line 21" class="">Mÿkwl Turckul dedit 16 asperi
+									
+								</li>
+							
+							
+							
+								<li id="line_23" contenteditable="false" spellcheck="true" data-bbox="97, 1725, 1673, 1876" data-placeholder="Enter text for line 23" class="">Potro Hodas dedit 37 asperi
+									
+								</li>
+							
+								<li id="line_24" contenteditable="false" spellcheck="true" data-bbox="124, 1860, 474, 1978" data-placeholder="Enter text for line 24" class="">Mycheleyn dedit 16 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_26" contenteditable="false" spellcheck="true" data-bbox="160, 1978, 700, 2130" data-placeholder="Enter text for line 26" class="">Dodran dedit 20 asperi
+									
+								</li>
+			
+								<li id="line_30" contenteditable="false" spellcheck="true" data-bbox="1047, 2116, 1479, 2228" data-placeholder="Enter text for line 30" class="">Stoyca dedit 16 asperi
+									
+								</li>
+							
+								<li id="line_27" contenteditable="false" spellcheck="true" data-bbox="134, 2232, 427, 2344" data-placeholder="Enter text for line 27">Wlsche dedit 24 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_29" contenteditable="false" spellcheck="true" data-bbox="114, 2390, 935, 2481" data-placeholder="Enter text for line 29" class="">Ywan dedit 12 asperi
+									
+								</li>
+							
+								
+							
+								
+							
+								<li id="line_33" contenteditable="false" spellcheck="true" data-bbox="109, 2480, 666, 2598" data-placeholder="Enter text for line 33">Nagoy dedit 28 asperi
+									
+								</li>
+							
+								
+							
+								<li id="line_35" contenteditable="false" spellcheck="true" data-bbox="137, 2597, 1504, 2772" data-placeholder="Enter text for line 35">Ion dedit 20 asperi
+									
+								</li>
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+	
+</body>
+</html>

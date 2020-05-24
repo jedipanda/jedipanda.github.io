@@ -1,0 +1,299 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link href="jfMagnify.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.min.js"></script>
+	<script type="text/javascript" src="jquery.jfMagnify.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".magnify").jfMagnify();
+		});
+	</script>
+<script>
+	$(document).ready(function() {
+		var uuid = $('meta[name=uuid]').attr('content');
+		if (localStorage) {
+			$('li[contenteditable=true], span').each(function(index) {
+				if(localStorage[uuid + this.id]) {
+					$(this).text(localStorage[uuid + this.id]);
+				}
+			});
+		}
+		// focus text fields when lines/words are clicked + mouseover
+		$('a.rect').click(function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('alt')).focus();
+		}).mouseover(function(e) {
+			$('#' + $(this).attr('alt')).addClass("hovered");
+		}).mouseout(function(e) {
+			$('#' + $(this).attr('alt')).removeClass("hovered");
+		});
+
+		// create mouseover effect on text fields
+		$('li[contenteditable=false], span').mouseover(function(e) {
+			console.log(this.id);
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).mouseout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).focusin(function(e) {
+			$('a.rect[alt=' + this.id + ']').addClass("hovered");
+		}).focusout(function(e) {
+			$('a.rect[alt=' + this.id + ']').removeClass("hovered");
+		}).keydown(function(e) {
+			if(e.which == 13) {
+				e.preventDefault();
+				$(this).addClass('corrected');
+				var $els = $('[contenteditable=false]');
+				$els.eq($els.index(this) + 1).focus();
+			}
+		// save to local storage 
+		}).keyup(function () {
+			localStorage[uuid + this.id] = $(this).text();
+		});
+		
+		// smooth scrolling
+		$('.page_anchor').click(function(e) {
+			e.preventDefault();
+			var target = $(this).attr("href");
+			var top = $(target).offset().top;
+			$('html, body').stop().animate({scrollTop: top }, 500);
+		});
+
+		// serializing the DOM to a file
+		$('#download_button').click(function(e) {
+			path = window.location.pathname;
+			$(this).attr('href', 'data:text/html,' + encodeURIComponent($('html')[0].outerHTML));
+			$(this).attr('download', path.substr(path.lastIndexOf('/') + 1));
+		});
+	});
+</script>
+<style>
+	.magnify_glass{
+  opacity:0;
+
+}
+	body {
+background: #ffffff;
+
+
+
+
+
+}
+
+[contenteditable=true]:empty:before {
+content: attr(data-placeholder);
+display: block; /* For Firefox */
+}
+
+li[contenteditable=true]:hover, li[contenteditable=true].hovered, span[contenteditable=true]:hover, span[contenteditable=true].hovered {
+border: 1px solid  #866ec7;
+}
+
+li[contenteditable=false]:hover, li[contenteditable=false].hovered, span[contenteditable=true]:hover, span[contenteditable=false].hovered {
+border: 1px solid red;
+}
+
+.rect:hover, a.hovered {
+box-shadow: inset 0 0 0 1px red;
+}
+
+li[contenteditable=true]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+li[contenteditable=false]{
+border: 1px dashed ;
+width: 100%;
+padding: 2px;
+margin: 0 0 5px 0;
+}
+
+ul {
+list-style-type:none;
+}
+
+
+.container {
+position: relative;
+margin-left: 10%;
+margin-right: 5%;
+display: table;
+height: 100%;
+width: 85%;
+}
+
+.img_container {
+position: relative;
+width:100%;
+}
+
+.column {
+display: table-cell;
+vertical-align: top;
+width: 50%;
+height: 100%;
+padding: 1rem;
+
+
+}
+
+#download_button {
+position: fixed;
+padding: 0;
+text-align: center;
+width: 10%;
+bottom: 50px;
+display: none;
+}
+
+.corrected {
+background-color:#866ec759;
+}
+#col1{
+background-color:white;
+
+}
+
+#col2 {
+
+background-color: white;
+-webkit-column-count: 1;
+-moz-column-count: 1;
+column-count: 1;
+-webkit-column-gap: 5px;
+-moz-column-gap: 5px;
+column-gap: 5px;
+-webkit-column-rule: 1px solid rgba(28,110,164,0.5);
+-moz-column-rule: 1px solid rgba(28,110,164,0.5);
+column-rule: 1px solid rgba(28,110,164,0.5);
+border: 3px ridge #1C6EA4;
+border-color: #866ec7;
+
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="column" id="col1">
+	<div id="window" class="magnify">
+		<div class="magnify_glass" id="aLink2"> </div>
+		<div class = "element_to_magnify">
+			<img src="images/A010.jpg" draggable="false"/>
+			
+			<a class="rect" alt="line_4" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 1.1327762302692665%; top: 12.309310889005786%; width: 97.84586815227483%; height: 11.51867438190426%; z-index: 2;"></a>
+					
+						
+						<a class="rect" alt="line_6" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 2.191272051996286%; top: 21.2519726459758%; width: 97.565459610027855%; height: 9.20568122041031%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_9" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.1754874651810585%; top: 28.56391372961599%; width: 95.74744661095636%; height: 7.889531825355077%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_10" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.5283194057567315%; top: 34.66596528143083%; width: 96.0631383472609%; height: 8.310362966859548%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_11" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.491179201485608%; top: 41.76749079431878%; width: 96.23026926648096%; height: 8.942135718043135%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_12" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 4.2711234911792015%; top: 49.65807469752762%; width: 95.502321262766945%; height: 7.154129405576013%; z-index: 2;"></a>
+					
+						
+					
+						<a class="rect" alt="line_14" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 2.8226555246053855%; top: 55.549710678590216%; width: 95.672237697307335%; height: 8.25881115202525%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_15" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.286908077994429%; top: 60.80852183061547%; width: 95.133704735376044%; height: 7.78537611783272%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_16" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.1012070566388115%; top: 68.43608627038401%; width: 95.115134633240483%; height: 8.154129405576013%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_17" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 3.732590529247911%; top: 76.01157285639137%; width: 94.18941504178273%; height: 6.470278800631247%; z-index: 2;"></a>
+					
+						<a class="rect" alt="line_18" href="file:///E:/Adinel/UBB/cursuri/Curs%20Paleografie%20planse/Plan%C8%99e/Segmentate/Segmentate/23.html" title="" style="position: absolute; left: 4.698235840297122%; top: 84.48185165702262%; width: 34.623955431754875%; height: 9.3140452393477116%; z-index: 2;"></a>
+		</div>
+	</div>
+</div>
+
+<div class="" id="col2">
+	<ul>
+	
+		<li id="line_4" contenteditable="false" spellcheck="true" data-bbox="61, 234, 5330, 510" data-placeholder="Enter text for line 4" class="">Lodouicus, Dei gratia, rex Hungarie, fidelibus
+			suis iudici, iuratis et vniuersis ciuibus Budensis, salutem et gratiam.
+									
+								</li>
+							
+								
+							
+								<li id="line_6" contenteditable="false" spellcheck="true" data-bbox="118, 404, 1387, 579" data-placeholder="Enter text for line 6" class="">Dicunt nobis ciues et hospites nostri de
+			Scybinio, quod licet nos graciose annuerimus, vt iidem et cuncti partis
+			Transiluane
+									
+								</li>
+							
+								
+							
+								<li id="line_9" contenteditable="false" spellcheck="true" data-bbox="171, 543, 5327, 731" data-placeholder="Enter text for line 9" class="">ciues cum rebus et mercibus eorum in Wyennam uel
+			quocumque uolunt transeundi liberam habeant facultatem, nec vos
+									
+								</li>
+							
+								<li id="line_10" contenteditable="false" spellcheck="true" data-bbox="190, 659, 5363, 855" data-placeholder="Enter text for line 10" class="">eosdem ad deponendum et reponendum in medio
+			vestri ipsas res et merces possitis coartare. Tamen vos dicta gratia
+									
+								</li>
+							
+								<li id="line_11" contenteditable="false" spellcheck="true" data-bbox="188, 794, 5370, 983" data-placeholder="Enter text for line 11" class="">nostra eis facta parui pensa eosdem nuper et res
+			ac bona eorum inhibuissetis nec de mandato nostro eos abire permittere
+									
+								</li>
+							
+								<li id="line_12" contenteditable="false" spellcheck="true" data-bbox="230, 944, 634, 1080" data-placeholder="Enter text for line 12" class="">curassetis ausu temerario mandatis nostris
+			resistentes. Vnde, cum nos dictos ciues de Scybinio et alios de predictis
+			partibus
+									
+								</li>
+							
+								
+							
+								<li id="line_14" contenteditable="false" spellcheck="true" data-bbox="152, 1056, 619, 1213" data-placeholder="Enter text for line 14" class="">Transiluanis gratia et libertate ipsis data uelimus
+			conseruari, fidelitati vestre firmiter precipimus et districte, quatenus ipsos
+			ciues
+									
+								</li>
+							
+								<li id="line_15" contenteditable="false" spellcheck="true" data-bbox="177, 1213, 615, 1361" data-placeholder="Enter text for line 15" class="">et hospites nostros de Scybinio et alios de
+			partibus Transiluanis nunc et semper in Wyennam uel quocumque uoluerint iuxta
+			seriem
+									
+								</li>
+							
+								<li id="line_16" contenteditable="false" spellcheck="true" data-bbox="167, 1358, 604, 1494" data-placeholder="Enter text for line 16" class="">et formam gratie nostre libere abire sine damno
+			permittatis. Aliud sicut nostri mandati transgressores effici pertimescitis
+									
+								</li>
+							
+								<li id="line_17" contenteditable="false" spellcheck="true" data-bbox="201, 1483, 642, 1606" data-placeholder="Enter text for line 17" class="">facere non ausuri in premissis. Datum in
+			Wyssegrad, sabbato proximo post festum Epiphaniarum Domini, anno eiusdem
+									
+								</li>
+							
+								<li id="line_18" contenteditable="false" spellcheck="true" data-bbox="253, 1606, 502, 1669" data-placeholder="Enter text for line 18">millesimo CCCmo sexagesimo quinto.
+									
+								</li>
+	
+	</ul>
+</div>
+
+
+</section>
+
+
+	
+<script src="js/main.js"></script>
+</body>
+</html>
