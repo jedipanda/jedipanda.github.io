@@ -187,10 +187,12 @@ function toggleCheck1(){
   if(document.getElementById("myCheckbox").checked === true){
       z.style.opacity = "1";
       z.style.height = "150";
+	  console.log("work");
       }
    else {
     z.style.opacity = "0";
     z.style.height = "0";
+	   console.log("not working");
     
   }
 }
