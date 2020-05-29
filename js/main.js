@@ -263,7 +263,7 @@ function toggleCheck3(){
    else {
     z.style.opacity = "0";
     z.style.height = "0";
-    z2.style.color = "gray";
+    z3.style.color = "gray";
     
   }
 }
