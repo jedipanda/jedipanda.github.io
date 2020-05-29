@@ -8626,3 +8626,7 @@ a[data-toggle="collapse"] {
   opacity:0;
 
 }
+.toggle-off.btn{
+  background-color: #e6e6e6;
+    border-color: #adadad;
+}
