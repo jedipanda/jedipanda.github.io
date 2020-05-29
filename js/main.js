@@ -183,16 +183,19 @@ function toggleCheck1(){
   var x = document.getElementById("iframez");
   var y = x.contentDocument;
   var z = x.contentDocument.getElementById('aLink');
+  var z1 = document.getElementById("activezoom");
   
   if(document.getElementById("myCheckbox").checked === true){
       z.style.opacity = "1";
       z.style.height = "150";
-	  console.log("work");
+      z1.style.color = "#866ec7";
+      console.log("work");
       }
    else {
     z.style.opacity = "0";
     z.style.height = "0";
-	   console.log("not working");
+    z1.style.color = "gray";
+    console.log("not work");
     
   }
 }
