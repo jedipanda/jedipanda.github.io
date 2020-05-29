@@ -233,14 +233,17 @@ function toggleCheck2(){
   var x = document.getElementById("iframez2");
   var y = x.contentDocument;
   var z = x.contentDocument.getElementById('aLink2');
+  var z2 = document.getElementById("activezoom2");
   
   if(document.getElementById("myCheckbox2").checked === true){
       z.style.opacity = "1";
       z.style.height = "150";
+      z2.style.color = "#866ec7";
       }
    else {
     z.style.opacity = "0";
     z.style.height = "0";
+    z2.style.color = "gray";
     
   }
 }
